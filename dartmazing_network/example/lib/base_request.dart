@@ -1,6 +1,6 @@
 
-import 'package:dartmazing_network/http_verbs.dart';
 import 'package:dartmazing_network/request_abstract.dart';
+import 'package:dartmazing_network/http_verbs.dart';
 
 class BaseRequest extends RequestAbstract {
 

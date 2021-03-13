@@ -13,6 +13,7 @@ class RepositoriesRequest extends BaseRequest {
         "page": "1"
       },
       null,
-      HttpVerbs.GET);
+      HttpVerbs.GET
+    );
 
 }
