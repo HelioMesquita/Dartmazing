@@ -1,13 +1,13 @@
-# dartmazing_network
+# Dartmazing_network
 
 A local flutter plugin that performs requests using native.
 
 ## Motivation
 The main objective of this dependency was to demonstrate how to create a plugin and add native dependencies on it.
 
-The native request is performed in 
-iOS by Alamofire 
-Android by Okhttp
+The native request is performed: 
+* iOS by [Alamofire](https://github.com/Alamofire/Alamofire)
+* Android by [Okhttp](https://github.com/square/okhttp)
 
 ## Getting Started
 
