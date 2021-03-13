@@ -3,7 +3,7 @@
 A local flutter plugin that performs requests using native.
 
 ## Motivation
-The main objective of this dependency was to demonstrate how to create a plugin and add native dependencies on it.
+The main objective of this dependency was to demonstrate how to create a plugin that calls native and add native dependencies on it.
 
 The native request is performed: 
 * iOS by [Alamofire](https://github.com/Alamofire/Alamofire)
