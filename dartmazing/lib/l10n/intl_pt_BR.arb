@@ -1,0 +1,17 @@
+{
+    "@@locale": "pt_BR",
+    "aplicationName": "Dartmazing",
+    "bestRepositories": "MELHORES REPOSITÓRIOS",
+    "renownedRepositories": "Repositórios renomados",
+    "bestTools": "As melhores ferramentas",
+    "updatedRepositories": "REPOSITÓRIOS ATUALIZADOS",
+    "theLatestUpdates": "As últimas atualizações",
+    "mostUpdatedRepositories": "Repositórios mais atualizados",
+    "stars": "estrelas",
+    "lastUpdate": "Última atualização",
+    "forks": "forks",
+    "issues": "defeitos",
+    "tryAgain": "Tentar novamente",
+    "anErrorHappened": "Um erro aconteceu",
+    "seeRepository": "Ver repositorio"
+}
