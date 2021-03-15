@@ -18,6 +18,7 @@ void main() {
       theme: ThemeData(
         brightness: Brightness.light,
         backgroundColor: backgroundLight,
+        shadowColor: lineLight,
         textTheme: TextTheme(
           headline6: TextStyle(color: titleLight),
           subtitle2: TextStyle(color: subtitleLight),
@@ -27,6 +28,7 @@ void main() {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         backgroundColor: backgroundDark,
+        shadowColor: lineDark,
         textTheme: TextTheme(
           headline6: TextStyle(color: titleDark),
           subtitle2: TextStyle(color: subtitleDark),
