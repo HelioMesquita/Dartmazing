@@ -10,10 +10,9 @@ abstract class FeedState extends Equatable {
 class Loading extends FeedState {}
 
 class Loaded extends FeedState {
-  final FeedRepositoriesSectionViewModel starsSection;
-  final FeedRepositoriesSectionViewModel updatedSection;
+  final RepositoriesViewModel viewModel;s
 
-  Loaded({this.starsSection, this.updatedSection});
+  Loaded({this.viewModel});
 }
 
 class Error extends FeedState {}

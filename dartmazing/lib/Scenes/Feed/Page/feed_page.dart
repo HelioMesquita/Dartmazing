@@ -17,13 +17,13 @@ class FeedPage extends StatelessWidget {
             return _baseScreen(body: () => _loading(), context: context);
           }
 
-          if (state is Error) {
-          }
-
           if (state is Loaded) {
             return _baseScreen(body: () => _list(state), context: context);
           }
 
+          if (state is Error) {
+
+          }
 
           return Container();
         }
@@ -62,8 +62,8 @@ class FeedPage extends StatelessWidget {
   Widget _list(Loaded state) {
     return Column(
       children: [
-        FeedRepositoriesSection(section: state.starsSection),
-        FeedRepositoriesSection(section: state.updatedSection)
+        FeedRepositoriesSection(section: state.viewModel.starsSection),
+        FeedRepositoriesSection(section: state.viewModel.updatedSection)
       ]
     );
   }
