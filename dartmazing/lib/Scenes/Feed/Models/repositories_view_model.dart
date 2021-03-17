@@ -16,19 +16,11 @@ class RepositoriesViewModel {
     final repositories = value.response.items.map((e) => Repository(
       name: e.name, 
       author: e.owner.login, 
-      stars: e.stargazersCount.toString(), 
-      imageURL: e.htmlUrl)
+      stars: e.stargazersCount, 
+      imageURL: e.owner.avatarUrl)
     ).toList();
 
     return FeedRepositoriesSectionViewModel(repositories: repositories);
   }
 
-  // bool isSuccess() {
-  //   final updatedStatusCode = int.parse(updated.statusCode) ?? 0;
-  //   final starsStatusCode = int.parse(stars.statusCode) ?? 0;
-
-
-  //   if (updatedStatusCode >= 200 && )
-  // }
-  
 }

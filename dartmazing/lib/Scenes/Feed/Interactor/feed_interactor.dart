@@ -15,9 +15,11 @@ class FeedInteractor extends FeedInteractorAbstract {
   FeedInteractor({this.worker});
 
   Future<RepositoriesViewModel> getRepositories() async {
-    final starsResponse = await _starsRequest();
-    final updatedResponse = await _updatedRequest();
-    return RepositoriesViewModel(stars: starsResponse, updated: updatedResponse);
+    return Future.wait([_starsRequest(), _updatedRequest()]).then((response) {
+      return RepositoriesViewModel(stars: response.first, updated: response.last);
+    }).catchError((error) {
+      return error;
+    });
   }
 
   Future<NativeResponse<RepositoriesResponse>> _starsRequest() async {

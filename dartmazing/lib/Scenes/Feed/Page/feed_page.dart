@@ -54,8 +54,7 @@ class FeedPage extends StatelessWidget {
 
   Widget _loading() {
     return Center(
-      child:
-        CupertinoActivityIndicator(animating: true)
+      child: CupertinoActivityIndicator(animating: true)
     );
   }
 
@@ -63,7 +62,7 @@ class FeedPage extends StatelessWidget {
     return Column(
       children: [
         FeedRepositoriesSection(section: state.viewModel.starsSection),
-        FeedRepositoriesSection(section: state.viewModel.updatedSection)
+        // FeedRepositoriesSection(section: state.viewModel.updatedSection)
       ]
     );
   }

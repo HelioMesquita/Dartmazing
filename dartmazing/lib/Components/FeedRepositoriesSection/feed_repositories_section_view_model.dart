@@ -16,9 +16,10 @@ class FeedRepositoriesSectionViewModel {
   }
 
   FeedRepositoriesGroupViewModel groupForIndex(int index) {
-    final firstCell = repositories.asMap().containsKey(index) ? repositories[index] : null;
-    final secondCell = repositories.asMap().containsKey(index+1) ? repositories[index+1] : null;
-    final thirdCell = repositories.asMap().containsKey(index+2) ? repositories[index+2] : null;
+    final currentIndex = index * numberOfElements;
+    final firstCell = repositories.asMap().containsKey(currentIndex) ? repositories[currentIndex] : null;
+    final secondCell = repositories.asMap().containsKey(currentIndex+1) ? repositories[currentIndex+1] : null;
+    final thirdCell = repositories.asMap().containsKey(currentIndex+2) ? repositories[currentIndex+2] : null;
     return FeedRepositoriesGroupViewModel(firstCell, secondCell, thirdCell);
   }
 

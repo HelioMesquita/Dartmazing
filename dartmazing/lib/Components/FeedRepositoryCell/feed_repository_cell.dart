@@ -82,7 +82,7 @@ class FeedRepositoryCell extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              repository.stars,
+              repository.starsKiloFormat,
               style: TextStyle(
                 backgroundColor: Theme.of(context).shadowColor,
                 color: Theme.of(context).textTheme.button.color,
