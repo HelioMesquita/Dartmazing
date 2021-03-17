@@ -28,11 +28,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "forks" : MessageLookupByLibrary.simpleMessage("forks"),
     "issues" : MessageLookupByLibrary.simpleMessage("defeitos"),
     "lastUpdate" : MessageLookupByLibrary.simpleMessage("Última atualização"),
+    "lastUpdated" : MessageLookupByLibrary.simpleMessage("Últimas atualizações"),
     "mostUpdatedRepositories" : MessageLookupByLibrary.simpleMessage("Repositórios mais atualizados"),
     "renownedRepositories" : MessageLookupByLibrary.simpleMessage("Repositórios renomados"),
+    "seeMore" : MessageLookupByLibrary.simpleMessage("Ver mais"),
     "seeRepository" : MessageLookupByLibrary.simpleMessage("Ver repositorio"),
     "stars" : MessageLookupByLibrary.simpleMessage("estrelas"),
     "theLatestUpdates" : MessageLookupByLibrary.simpleMessage("As últimas atualizações"),
+    "topRepos" : MessageLookupByLibrary.simpleMessage("Mais populares"),
     "tryAgain" : MessageLookupByLibrary.simpleMessage("Tentar novamente"),
     "updatedRepositories" : MessageLookupByLibrary.simpleMessage("REPOSITÓRIOS ATUALIZADOS")
   };

@@ -20,6 +20,10 @@ dependencies:
   equatable: ^1.2.5
   provider: ^4.0.0
 
+  dartmazing_network:
+    path: ../dartmazing_network
+  carousel_slider: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

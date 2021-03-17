@@ -174,6 +174,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Most popular`
+  String get topRepos {
+    return Intl.message(
+      'Most popular',
+      name: 'topRepos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last updates`
+  String get lastUpdated {
+    return Intl.message(
+      'Last updates',
+      name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See more`
+  String get seeMore {
+    return Intl.message(
+      'See more',
+      name: 'seeMore',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

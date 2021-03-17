@@ -13,5 +13,8 @@
     "issues": "defeitos",
     "tryAgain": "Tentar novamente",
     "anErrorHappened": "Um erro aconteceu",
-    "seeRepository": "Ver repositorio"
+    "seeRepository": "Ver repositorio",
+    "topRepos": "Mais populares",
+    "lastUpdated": "Últimas atualizações",
+    "seeMore": "Ver mais"
 }

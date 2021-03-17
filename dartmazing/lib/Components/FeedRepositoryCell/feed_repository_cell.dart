@@ -1,35 +1,24 @@
+import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/generated/l10n.dart';
 import 'package:flutter/material.dart';
-
-class FeedRepositoryCellViewModel {
-  final String name;
-  final String author;
-  final String stars;
-  final String imageURL;
-
-  FeedRepositoryCellViewModel({this.name, this.author, this.stars, this.imageURL});
-}
 
 class FeedRepositoryCell extends StatelessWidget {
 
   final borderRadius = BorderRadius.circular(14);
-  final FeedRepositoryCellViewModel viewModel;
+  final Repository repository;
   
-  FeedRepositoryCell({Key key, this.viewModel}) : super(key: key);
+  FeedRepositoryCell({Key key, this.repository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Padding(
-        padding: EdgeInsets.only(left: 12.0, right: 12.0),
-        child: Row(
-          children: [
-            _imageProfile(context),
-            SizedBox(width: 12),
-            _repositoryFields(context),
-            _startsFields(context)
-          ]
-        ),
+      child: Row(
+        children: [
+          _imageProfile(context),
+          SizedBox(width: 12),
+          _repositoryFields(context),
+          _startsFields(context)
+        ]
       ),
     );
   }
@@ -46,7 +35,7 @@ class FeedRepositoryCell extends StatelessWidget {
       child: ClipRRect(
         borderRadius: borderRadius,
         child: Image.network(
-          viewModel.imageURL,
+          repository.imageURL,
           width: 62.0,
           height: 62.0,
         )
@@ -60,7 +49,7 @@ class FeedRepositoryCell extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,                
         children: [
           Text(
-            viewModel.name,
+            repository.name,
             maxLines: 1,
             style: TextStyle(
               color: Theme.of(context).textTheme.headline6.color,
@@ -69,7 +58,7 @@ class FeedRepositoryCell extends StatelessWidget {
           ),
           SizedBox(height: 4),
           Text(
-            viewModel.author,
+            repository.author,
             maxLines: 2,
             style: TextStyle(
               color: Theme.of(context).textTheme.subtitle2.color,
@@ -93,7 +82,7 @@ class FeedRepositoryCell extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              viewModel.stars,
+              repository.stars,
               style: TextStyle(
                 backgroundColor: Theme.of(context).shadowColor,
                 color: Theme.of(context).textTheme.button.color,
@@ -114,4 +103,5 @@ class FeedRepositoryCell extends StatelessWidget {
       ]
     );
   }
+
 }

@@ -1,5 +1,7 @@
-import 'package:dartmazing/Pages/Feed/cubit/feed_cubit.dart';
-import 'package:dartmazing/Pages/Feed/feed_page.dart';
+import 'package:dartmazing/Network/worker.dart';
+import 'package:dartmazing/Scenes/Feed/Interactor/feed_interactor.dart';
+import 'package:dartmazing/Scenes/Feed/Page/cubit/feed_cubit.dart';
+import 'package:dartmazing/Scenes/Feed/Page/feed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +23,7 @@ class RouterManager {
     Routes.Feed: (context) {
       return BlocProvider<FeedCubit>(
         create: (context) => FeedCubit(
+          interactor: FeedInteractor(worker: Worker())
         ),
         child: FeedPage(),
       );
