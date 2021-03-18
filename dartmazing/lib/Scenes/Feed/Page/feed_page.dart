@@ -37,6 +37,8 @@ class FeedPage extends StatelessWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
           return <Widget>[
             CupertinoSliverNavigationBar(
+              
+              border: Border.all(color: Colors.transparent),
               backgroundColor: Theme.of(context).backgroundColor,
               largeTitle: Text(
                 S.of(context).aplicationName,
@@ -59,11 +61,13 @@ class FeedPage extends StatelessWidget {
   }
 
   Widget _list(Loaded state) {
-    return Column(
-      children: [
-        FeedRepositoriesSection(section: state.viewModel.starsSection),
-        // FeedRepositoriesSection(section: state.viewModel.updatedSection)
-      ]
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          FeedRepositoriesSection(section: state.viewModel.starsSection),
+          FeedRepositoriesSection(section: state.viewModel.updatedSection)
+        ]
+      ),
     );
   }
 

@@ -7,19 +7,20 @@ import 'package:flutter/material.dart';
 class FeedRepositoriesSection extends StatelessWidget {
 
   final FeedRepositoriesSectionViewModel section;
+  final padding = EdgeInsets.only(left: 16.0, right: 28.0);
 
-  const FeedRepositoriesSection({Key key, this.section}) : super(key: key);
+  FeedRepositoriesSection({Key key, this.section}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0),
+          padding: padding,
           child: Divider(color: Theme.of(context).shadowColor, thickness: 0.5,),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0),
+          padding: padding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -42,22 +43,21 @@ class FeedRepositoriesSection extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20),
-        Container(
-          child: CarouselSlider.builder(
-            options: CarouselOptions(
-              viewportFraction: 0.92,
-              initialPage: 0,
-              enableInfiniteScroll: false,
-              scrollDirection: Axis.horizontal,
-            ),
-            itemCount: section.numberOfRows,
-            itemBuilder: (context,index,_) {
-              return Container(
-                margin: EdgeInsets.only(right: 12),
-                child: FeedRepositoriesGroup(group: section.groupForIndex(index))
-              );
-            },
+        CarouselSlider.builder(
+          options: CarouselOptions(
+            height: 258,
+            viewportFraction: 0.92,
+            initialPage: 0,
+            enableInfiniteScroll: false,
+            scrollDirection: Axis.horizontal,
           ),
+          itemCount: section.numberOfRows,
+          itemBuilder: (context,index,_) {
+            return Container(
+              margin: EdgeInsets.only(right: 12),
+              child: FeedRepositoriesGroup(group: section.groupForIndex(index))
+            );
+          },
         ),
       ],
     );

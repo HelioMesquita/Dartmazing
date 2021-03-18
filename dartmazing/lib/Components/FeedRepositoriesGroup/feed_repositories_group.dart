@@ -13,6 +13,7 @@ class FeedRepositoriesGroup extends StatelessWidget {
     return Column(
       children: [
         FeedRepositoryCell(repository: group.firstCell),
+        
         Visibility(
           visible: group.secondCell != null,
           child: Column(
