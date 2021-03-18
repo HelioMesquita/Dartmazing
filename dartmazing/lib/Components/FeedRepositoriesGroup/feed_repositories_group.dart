@@ -27,7 +27,7 @@ class FeedRepositoriesGroup extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 86.0),
+            padding: EdgeInsets.only(left: 75.0),
             child: Divider(color: Theme.of(context).shadowColor, thickness: 0.5,),
           ),
           FeedRepositoryCell(repository: repository, repositoryTap: repositoryTap)
