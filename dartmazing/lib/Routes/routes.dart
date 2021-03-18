@@ -1,4 +1,7 @@
+import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/Network/worker.dart';
+import 'package:dartmazing/Scenes/Detail/Page/cubit/detail_cubit.dart';
+import 'package:dartmazing/Scenes/Detail/Page/detail_page.dart';
 import 'package:dartmazing/Scenes/Feed/Interactor/feed_interactor.dart';
 import 'package:dartmazing/Scenes/Feed/Page/cubit/feed_cubit.dart';
 import 'package:dartmazing/Scenes/Feed/Page/feed_page.dart';
@@ -28,6 +31,16 @@ class RouterManager {
         child: FeedPage(),
       );
     },
-  }; 
+
+    Routes.Detail: (context) {
+      final args = ModalRoute.of(context).settings.arguments as Repository;
+      return BlocProvider<DetailCubit>(
+        create: (context) => DetailCubit(
+          repository: args
+        ),
+        child: DetailPage(),
+      );
+    },
+  };
 
 }

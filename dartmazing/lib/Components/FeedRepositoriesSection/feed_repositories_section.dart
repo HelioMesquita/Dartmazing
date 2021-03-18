@@ -1,65 +1,95 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dartmazing/Components/FeedRepositoriesGroup/feed_repositories_group.dart';
 import 'package:dartmazing/Components/FeedRepositoriesSection/feed_repositories_section_view_model.dart';
+import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class FeedRepositoriesSection extends StatelessWidget {
 
   final FeedRepositoriesSectionViewModel section;
-  final padding = EdgeInsets.only(left: 16.0, right: 28.0);
+  final String title;
+  final Function seeMoreTap;
+  final Function(Repository) repositoryTap;
+  final padding = EdgeInsets.only(left: 16.0, right: 12.0);
 
-  FeedRepositoriesSection({Key key, this.section}) : super(key: key);
+  FeedRepositoriesSection({Key key, this.section, this.title, this.seeMoreTap, this.repositoryTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: padding,
-          child: Divider(color: Theme.of(context).shadowColor, thickness: 0.5,),
-        ),
-        Padding(
-          padding: padding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                S.of(context).topRepos,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.headline6.color,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              Text(
-                S.of(context).seeMore,
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.button.color,
-                  fontSize: 18,
-                ),
-              ),
-            ]
-          ),
-        ),
+        _topDivider(context),
+        _header(context),
         SizedBox(height: 20),
-        CarouselSlider.builder(
-          options: CarouselOptions(
-            height: 258,
-            viewportFraction: 0.92,
-            initialPage: 0,
-            enableInfiniteScroll: false,
-            scrollDirection: Axis.horizontal,
-          ),
-          itemCount: section.numberOfRows,
-          itemBuilder: (context,index,_) {
-            return Container(
-              margin: EdgeInsets.only(right: 12),
-              child: FeedRepositoriesGroup(group: section.groupForIndex(index))
-            );
-          },
-        ),
+        _carousel()
       ],
+    );
+  }
+
+  Widget _header(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _title(context),
+          _seeMoreButton(context)
+        ]
+      ),
+    );
+  }
+
+  Widget _topDivider(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: Divider(color: Theme.of(context).shadowColor, thickness: 0.5,),
+    );
+  }
+
+  Widget _title(BuildContext context) {
+    return Text(
+      this.title,
+      style: TextStyle(
+        color: Theme.of(context).textTheme.headline6.color,
+        fontSize: 24,
+        fontWeight: FontWeight.bold
+      ),
+    );
+  }
+
+  Widget _seeMoreButton(BuildContext context) {
+    return FlatButton(
+      child: Text(
+        S.of(context).seeMore,
+        style: TextStyle(
+          color: Theme.of(context).textTheme.button.color,
+          fontSize: 18,
+        ),
+      ),
+      onPressed: () => seeMoreTap()
+    );
+  }
+
+  Widget _carousel() {
+    return CarouselSlider.builder(
+      options: CarouselOptions(
+        height: 258,
+        viewportFraction: 0.92,
+        initialPage: 0,
+        enableInfiniteScroll: false,
+        scrollDirection: Axis.horizontal,
+      ),
+      itemCount: section.numberOfRows,
+      itemBuilder: (context,index,_) {
+        return Container(
+          margin: EdgeInsets.only(right: 12),
+          child: FeedRepositoriesGroup(
+            group: section.groupForIndex(index),
+            repositoryTap: repositoryTap
+          )
+        );
+      },
     );
   }
 

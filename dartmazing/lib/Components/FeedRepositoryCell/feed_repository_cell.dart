@@ -6,20 +6,25 @@ class FeedRepositoryCell extends StatelessWidget {
 
   final borderRadius = BorderRadius.circular(14);
   final Repository repository;
+  final Function(Repository) repositoryTap;
   
-  FeedRepositoryCell({Key key, this.repository}) : super(key: key);
+  FeedRepositoryCell({Key key, this.repository, this.repositoryTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Row(
-        children: [
-          _imageProfile(context),
-          SizedBox(width: 12),
-          _repositoryFields(context),
-          _startsFields(context)
-        ]
+      child: Container(
+        color: Colors.transparent,
+        child: Row(
+          children: [
+            _imageProfile(context),
+            SizedBox(width: 12),
+            _repositoryFields(context),
+            _startsFields(context)
+          ]
+        ),
       ),
+      onTap: () => repositoryTap(this.repository),
     );
   }
 

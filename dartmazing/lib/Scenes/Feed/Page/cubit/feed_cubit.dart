@@ -26,4 +26,12 @@ class FeedCubit extends Cubit<FeedState> {
 
   }
 
+  seeMoreStarsRepositories() {
+
+  }
+
+  seeMoreUpdatedRepositories() {
+    
+  }
+
 }
