@@ -5,12 +5,15 @@ import 'package:dartmazing/Scenes/Detail/Page/detail_page.dart';
 import 'package:dartmazing/Scenes/Feed/Interactor/feed_interactor.dart';
 import 'package:dartmazing/Scenes/Feed/Page/cubit/feed_cubit.dart';
 import 'package:dartmazing/Scenes/Feed/Page/feed_page.dart';
+import 'package:dartmazing/Scenes/RepositoriesList/Models/repositories_list_dto.dart';
+import 'package:dartmazing/Scenes/RepositoriesList/Page/cubit/repositories_list_cubit.dart';
+import 'package:dartmazing/Scenes/RepositoriesList/Page/repositories_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Routes {
   static const Feed = "/";
-  static const Repositories = "/repositories";
+  static const RepositoriesList = "/repositories";
   static const Detail = "/detail";
 }
 
@@ -41,6 +44,17 @@ class RouterManager {
         child: DetailPage(),
       );
     },
+
+    Routes.RepositoriesList: (context) {
+      final args = ModalRoute.of(context).settings.arguments as RepositoriesListDTO;
+      return BlocProvider<RepositoriesListCubit>(
+        create: (context) => RepositoriesListCubit(
+          transferObject: args
+        ),
+        child: RepositoriesListPage(),
+        );
+      },
+
   };
 
 }

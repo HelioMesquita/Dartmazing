@@ -1,6 +1,7 @@
 import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:dartmazing/Extensions/int_kilo_format.dart';
 
 class FeedRepositoryCell extends StatelessWidget {
 
@@ -87,7 +88,7 @@ class FeedRepositoryCell extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              repository.starsKiloFormat,
+              repository.stars.kiloFormat,
               style: TextStyle(
                 backgroundColor: Theme.of(context).shadowColor,
                 color: Theme.of(context).textTheme.button.color,

@@ -1,7 +1,7 @@
 import 'package:dartmazing/Network/worker.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_filters.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_request.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_response.dart';
+import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_view_model.dart';
 import 'package:dartmazing_network/native_response.dart';
 
@@ -23,12 +23,12 @@ class FeedInteractor extends FeedInteractorAbstract {
   }
 
   Future<NativeResponse<RepositoriesResponse>> _starsRequest() async {
-    final starsRequest = RepositoriesRequest(RepositoriesFilters.stars);
+    final starsRequest = RepositoriesRequest(RepositoriesType.stars);
     return worker.fetch(request: starsRequest,  factory: (json) => RepositoriesResponse.fromJson(json));
   }
 
   Future<NativeResponse<RepositoriesResponse>> _updatedRequest() async {
-    final updatedRequest = RepositoriesRequest(RepositoriesFilters.updated);
+    final updatedRequest = RepositoriesRequest(RepositoriesType.updated);
     return worker.fetch(request: updatedRequest,  factory: (json) => RepositoriesResponse.fromJson(json));
   }
 

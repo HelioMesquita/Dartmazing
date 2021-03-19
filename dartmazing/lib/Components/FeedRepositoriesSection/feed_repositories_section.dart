@@ -2,18 +2,19 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dartmazing/Components/FeedRepositoriesGroup/feed_repositories_group.dart';
 import 'package:dartmazing/Components/FeedRepositoriesSection/feed_repositories_section_view_model.dart';
 import 'package:dartmazing/Models/repository.dart';
+import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class FeedRepositoriesSection extends StatelessWidget {
 
-  final FeedRepositoriesSectionViewModel section;
+  final FeedRepositoriesSectionViewModel viewModel;
   final String title;
-  final Function seeMoreTap;
+  final Function(RepositoriesType) seeMoreTap;
   final Function(Repository) repositoryTap;
   final padding = EdgeInsets.only(left: 16.0, right: 12.0);
 
-  FeedRepositoriesSection({Key key, this.section, this.title, this.seeMoreTap, this.repositoryTap}) : super(key: key);
+  FeedRepositoriesSection({Key key, this.viewModel, this.title, this.seeMoreTap, this.repositoryTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,8 @@ class FeedRepositoriesSection extends StatelessWidget {
       style: TextStyle(
         color: Theme.of(context).textTheme.headline6.color,
         fontSize: 24,
-        fontWeight: FontWeight.bold
+        fontWeight: FontWeight.bold,
+        letterSpacing: -0.3
       ),
     );
   }
@@ -65,9 +67,11 @@ class FeedRepositoriesSection extends StatelessWidget {
         style: TextStyle(
           color: Theme.of(context).textTheme.button.color,
           fontSize: 18,
+          fontWeight: FontWeight.normal,
+          letterSpacing: -0.3
         ),
       ),
-      onPressed: () => seeMoreTap()
+      onPressed: () => seeMoreTap(viewModel.type)
     );
   }
 
@@ -76,16 +80,14 @@ class FeedRepositoriesSection extends StatelessWidget {
       options: CarouselOptions(
         height: 258,
         viewportFraction: 0.92,
-        initialPage: 0,
         enableInfiniteScroll: false,
-        scrollDirection: Axis.horizontal,
       ),
-      itemCount: section.numberOfRows,
+      itemCount: viewModel.numberOfRows,
       itemBuilder: (context,index,_) {
         return Container(
           margin: EdgeInsets.only(right: 12),
           child: FeedRepositoriesGroup(
-            group: section.groupForIndex(index),
+            group: viewModel.groupForIndex(index),
             repositoryTap: repositoryTap
           )
         );

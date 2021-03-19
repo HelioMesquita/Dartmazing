@@ -1,12 +1,14 @@
 import 'package:dartmazing/Components/FeedRepositoriesGroup/feed_repositories_group_view_model.dart';
 import 'package:dartmazing/Models/repository.dart';
+import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 
 class FeedRepositoriesSectionViewModel {
 
   final int numberOfElements = 3;
   final List<Repository> repositories;
+  final RepositoriesType type;
   
-  FeedRepositoriesSectionViewModel({this.repositories});
+  FeedRepositoriesSectionViewModel({this.repositories, this.type});
 
   int get numberOfRows {
     var remainder = (repositories.length ~/ numberOfElements).toInt();

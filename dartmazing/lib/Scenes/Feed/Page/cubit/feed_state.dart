@@ -16,3 +16,13 @@ class Loaded extends FeedState {
 }
 
 class Error extends FeedState {}
+
+class PresentRepositoriesList extends FeedState {
+  final List<Repository> repositories;
+  final RepositoriesType type;
+
+  PresentRepositoriesList({this.repositories, this.type});
+
+  RepositoriesListDTO get transferObject => RepositoriesListDTO(repositories: repositories, type: type);
+
+}
