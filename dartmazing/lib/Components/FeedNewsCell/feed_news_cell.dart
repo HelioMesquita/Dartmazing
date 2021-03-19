@@ -15,7 +15,7 @@ class FeedNewsCell extends StatelessWidget {
       children: [
         _topDivider(context),
         _header(context),
-        SizedBox(height: 20),
+        SizedBox(height: 8),
         generateGridImage(context),
         SizedBox(height: 20)
       ],
@@ -81,7 +81,7 @@ class FeedNewsCell extends StatelessWidget {
   
   Widget generateGridImage(BuildContext context) {
     return Container(
-      height: 200,
+      height: 220,
       child: ClipRRect(
         borderRadius: borderRadius,
         child: generateTable()
@@ -99,7 +99,7 @@ class FeedNewsCell extends StatelessWidget {
   }
 
   List<Widget> generateRown(List<Repository> list) {
-    return list.map((e) => Image.network(e.imageURL, height: 100, fit: BoxFit.cover)).toList();
+    return list.map((e) => Image.network(e.imageURL, height: 110, fit: BoxFit.cover)).toList();
   }
 
 }

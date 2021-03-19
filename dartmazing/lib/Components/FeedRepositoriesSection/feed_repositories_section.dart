@@ -22,7 +22,6 @@ class FeedRepositoriesSection extends StatelessWidget {
       children: [
         _topDivider(context),
         _header(context),
-        SizedBox(height: 20),
         _carousel()
       ],
     );
@@ -78,7 +77,7 @@ class FeedRepositoriesSection extends StatelessWidget {
   Widget _carousel() {
     return CarouselSlider.builder(
       options: CarouselOptions(
-        height: 258,
+        height: 270,
         viewportFraction: 0.92,
         enableInfiniteScroll: false,
       ),
