@@ -15,11 +15,13 @@ class RepositoriesListPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          appBar: CupertinoNavigationBar(middle: Text(getFilterTitle(state.type))),
+          appBar: CupertinoNavigationBar(
+            middle: Text(getFilterTitle(state.type))
+          ),
           body: Padding(
-            padding: EdgeInsets.only(top: 10.0, left: 24, right: 16),
+            padding: EdgeInsets.only(top: 10.0, left: 24, right: 24),
             child: ListView.builder(
-              itemCount: 1,
+              itemCount: state.repositories.length,
               itemBuilder: (context, index) {
                 return RepositoriesListCell(repository: state.repositories[index], repositoryTap: (repository) {
                   _presentDetail(repository, context);

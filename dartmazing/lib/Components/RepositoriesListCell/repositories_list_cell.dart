@@ -68,9 +68,8 @@ class RepositoriesListCell extends StatelessWidget {
           ),
         ),
         Text(
-          repository.description,
-          maxLines: 2,
-          softWrap: true,
+          repository.description ?? "",
+          maxLines: 1,
           style: TextStyle(
             color: Theme.of(context).textTheme.subtitle2.color,
             fontSize: 16,

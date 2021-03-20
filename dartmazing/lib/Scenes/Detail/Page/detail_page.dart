@@ -18,7 +18,7 @@ class DetailPage extends StatelessWidget {
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: CupertinoNavigationBar(),
           body: Padding(
-            padding: EdgeInsets.only(top: 10.0, left: 24, right: 16),
+            padding: EdgeInsets.only(top: 10.0, left: 24, right: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
