@@ -40,7 +40,7 @@ class FeedPage extends StatelessWidget {
                 S.of(context).aplicationName,
                 style: TextStyle(
                   color: Theme.of(context).textTheme.headline6.color,
-                  letterSpacing: -0.3
+                  letterSpacing: -1
                 ),
               ),
             )
