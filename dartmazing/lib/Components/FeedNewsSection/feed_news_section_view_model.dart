@@ -2,13 +2,14 @@ import 'package:dartmazing/Components/FeedNewsCell/feed_news_cell_view_model.dar
 import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing/generated/l10n.dart';
+import 'package:flutter/foundation.dart';
 
 class FeedNewsSectionViewModel {
 
   final List<Repository> starsRepositories;
   final List<Repository> updatedRepositories;
 
-  FeedNewsSectionViewModel({this.starsRepositories, this.updatedRepositories});
+  FeedNewsSectionViewModel({@required this.starsRepositories, @required this.updatedRepositories});
 
   List<FeedNewsCellViewModel> get toList => [
     FeedNewsCellViewModel.fromRepositories(

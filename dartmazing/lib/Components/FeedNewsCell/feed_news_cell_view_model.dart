@@ -1,5 +1,6 @@
 import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
+import 'package:flutter/foundation.dart';
 
 class FeedNewsCellViewModel {
 
@@ -10,7 +11,13 @@ class FeedNewsCellViewModel {
   String description;
   RepositoriesType type;
 
-  FeedNewsCellViewModel.fromRepositories({List<Repository> repositories, String title, String subtitle, String description, RepositoriesType type}) {
+  FeedNewsCellViewModel.fromRepositories({
+    @required List<Repository> repositories, 
+    @required String title, 
+    @required String subtitle, 
+    @required String description,
+    @required RepositoriesType type
+  }) {
     repositories.asMap().forEach((index, value) {
       if(index % 2 == 0) {
         evenList.add(value);

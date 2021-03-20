@@ -1,4 +1,5 @@
 import 'package:dartmazing/Models/repository.dart';
+import 'package:flutter/foundation.dart';
 
 class FeedRepositoriesGroupViewModel {
 
@@ -6,6 +7,6 @@ class FeedRepositoriesGroupViewModel {
   final Repository secondCell;
   final Repository thirdCell;
 
-  FeedRepositoriesGroupViewModel(this.firstCell, this.secondCell, this.thirdCell);
+  FeedRepositoriesGroupViewModel({@required this.firstCell,@required this.secondCell,@required this.thirdCell});
 
 }

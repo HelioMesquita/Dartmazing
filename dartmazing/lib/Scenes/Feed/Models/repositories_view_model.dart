@@ -2,23 +2,25 @@ import 'package:dartmazing/Components/FeedNewsSection/feed_news_section_view_mod
 import 'package:dartmazing/Components/FeedRepositoriesSection/feed_repositories_section_view_model.dart';
 import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_response.dart';
+import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing_network/native_response.dart';
+import 'package:flutter/foundation.dart';
 
 class RepositoriesViewModel {
   final NativeResponse<RepositoriesResponse> stars;
   final NativeResponse<RepositoriesResponse> updated;
 
-  RepositoriesViewModel({this.stars, this.updated});
+  RepositoriesViewModel({@required this.stars,@required this.updated});
 
-  FeedRepositoriesSectionViewModel get starsSection => _toSection(stars);
-  FeedRepositoriesSectionViewModel get updatedSection => _toSection(updated);
+  FeedRepositoriesSectionViewModel get starsSection => _toSection(stars, RepositoriesType.stars);
+  FeedRepositoriesSectionViewModel get updatedSection => _toSection(updated, RepositoriesType.updated);
   
   List<Repository> get starsRepositories => _toRepositories(stars);
   List<Repository> get updatedRepositories => _toRepositories(updated);
 
-  FeedRepositoriesSectionViewModel _toSection(NativeResponse<RepositoriesResponse> value) {
+  FeedRepositoriesSectionViewModel _toSection(NativeResponse<RepositoriesResponse> value, RepositoriesType type) {
     final repositories = _toRepositories(value);
-    return FeedRepositoriesSectionViewModel(repositories: repositories);
+    return FeedRepositoriesSectionViewModel(repositories: repositories, type: type);
   }
 
   FeedNewsSectionViewModel get newsSection => FeedNewsSectionViewModel(
@@ -37,7 +39,6 @@ class RepositoriesViewModel {
       lastUpdate: e.updatedAt,
       )
     ).toList();
-
   }
 
 }

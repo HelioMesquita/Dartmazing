@@ -63,17 +63,17 @@ class FeedPage extends StatelessWidget {
       child: Column(
         children: [
           FeedNewsSection(section: state.viewModel.newsSection, 
-          seeMoreTap: (type) => cubit.seeMore),
+          seeMoreTap: (type) => cubit.seeMore(type)),
           FeedRepositoriesSection(
             viewModel: state.viewModel.starsSection,
             title: S.of(context).topRepos,
-            seeMoreTap: (type) => cubit.seeMore,
+            seeMoreTap: (type) => cubit.seeMore(type),
             repositoryTap: (repository) => _presentDetail(repository, context)
           ),
           FeedRepositoriesSection(
             viewModel: state.viewModel.updatedSection, 
             title: S.of(context).lastUpdated, 
-            seeMoreTap: (type) => cubit.seeMore,
+            seeMoreTap: (type) => cubit.seeMore(type),
             repositoryTap: (repository) => _presentDetail(repository, context)
           )
         ]
