@@ -33,10 +33,12 @@ class FeedCubit extends Cubit<FeedState> {
 
   _seeMoreStarsRepositories(RepositoriesType type) {
     emit(PresentRepositoriesList(repositories: viewModel.starsRepositories, type: type));
+    emit(Loaded(viewModel: viewModel));
   }
 
   _seeMoreUpdatedRepositories(RepositoriesType type) {
     emit(PresentRepositoriesList(repositories: viewModel.updatedRepositories, type: type));
+    emit(Loaded(viewModel: viewModel));
   }
 
   seeMore(RepositoriesType type) {
