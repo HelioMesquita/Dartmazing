@@ -1,6 +1,6 @@
 import 'package:dartmazing/Components/FeedNewsCell/feed_news_cell_view_model.dart';
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Models/repository.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 

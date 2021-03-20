@@ -1,4 +1,4 @@
-import 'package:dartmazing/Scenes/Feed/Models/repository_response.dart';
+import 'package:dartmazing/Models/repository_response.dart';
 
 class RepositoriesResponse {
   List<RepositoryResponse> items;

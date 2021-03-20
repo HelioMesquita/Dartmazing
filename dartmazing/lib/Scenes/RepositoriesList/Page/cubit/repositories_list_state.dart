@@ -1,10 +1,19 @@
 part of 'repositories_list_cubit.dart';
 
 abstract class RepositoriesListState extends Equatable {
-  const RepositoriesListState();
+
+  final List<Repository> repositories;
+  final RepositoriesType type;
+
+  RepositoriesListState(this.repositories, this.type);
+  
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [repositories];
 }
 
-class RepositoriesListInitial extends RepositoriesListState {}
+class Loaded extends RepositoriesListState {
+  
+  Loaded(List<Repository> repositories, RepositoriesType type) : super(repositories, type);
+
+}

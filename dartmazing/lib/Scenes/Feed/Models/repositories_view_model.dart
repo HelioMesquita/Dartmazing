@@ -1,8 +1,8 @@
 import 'package:dartmazing/Components/FeedNewsSection/feed_news_section_view_model.dart';
 import 'package:dartmazing/Components/FeedRepositoriesSection/feed_repositories_section_view_model.dart';
+import 'package:dartmazing/Models/repositories_response.dart';
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Models/repository.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_response.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing_network/native_response.dart';
 import 'package:flutter/foundation.dart';
 

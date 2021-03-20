@@ -9,7 +9,7 @@ class FeedRepositoryCell extends StatelessWidget {
   final Repository repository;
   final Function(Repository) repositoryTap;
   
-  FeedRepositoryCell({Key key, this.repository, this.repositoryTap}) : super(key: key);
+  FeedRepositoryCell({Key key, @required this.repository, @required this.repositoryTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

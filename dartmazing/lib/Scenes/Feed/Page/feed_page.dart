@@ -58,21 +58,19 @@ class FeedPage extends StatelessWidget {
   }
 
   Widget _list(Loaded state, BuildContext context) {
+    final cubit = BlocProvider.of<FeedCubit>(context);
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
       slivers: [
         CupertinoSliverRefreshControl(
-          onRefresh: () {
-            print("Refresh was triggered");
-            return Future<void>.delayed(const Duration(seconds: 1));
-          },
+          onRefresh: () => cubit.getRepositories()
         ),
-        sliverList(state, context)
+        _sliverList(state, context)
       ]
     );
   }
 
-  Widget sliverList(Loaded state, BuildContext context) {
+  Widget _sliverList(Loaded state, BuildContext context) {
     final cubit = BlocProvider.of<FeedCubit>(context);
     final items = [
       FeedNewsSection(
@@ -81,13 +79,11 @@ class FeedPage extends StatelessWidget {
       ),
       FeedRepositoriesSection(
         viewModel: state.viewModel.starsSection,
-        title: S.of(context).topRepos,
         seeMoreTap: (type) => cubit.seeMore(type),
         repositoryTap: (repository) => _presentDetail(repository, context)
       ),
       FeedRepositoriesSection(
         viewModel: state.viewModel.updatedSection, 
-        title: S.of(context).lastUpdated, 
         seeMoreTap: (type) => cubit.seeMore(type),
         repositoryTap: (repository) => _presentDetail(repository, context)
       )

@@ -13,6 +13,9 @@ class Loaded extends FeedState {
   final RepositoriesViewModel viewModel;
 
   Loaded({this.viewModel});
+
+  @override
+  List<Object> get props => [viewModel];
 }
 
 class Error extends FeedState {}

@@ -1,7 +1,7 @@
+import 'package:dartmazing/Models/repositories_request.dart';
+import 'package:dartmazing/Models/repositories_response.dart';
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Network/worker.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_request.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_response.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing/Scenes/Feed/Models/repositories_view_model.dart';
 import 'package:dartmazing_network/native_response.dart';
 

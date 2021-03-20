@@ -1,6 +1,6 @@
 
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Network/base_request.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing_network/http_verbs.dart';
 
 final String _path = "/search/repositories";

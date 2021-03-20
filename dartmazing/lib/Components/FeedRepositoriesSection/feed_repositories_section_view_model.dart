@@ -1,6 +1,6 @@
 import 'package:dartmazing/Components/FeedRepositoriesGroup/feed_repositories_group_view_model.dart';
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Models/repository.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:flutter/foundation.dart';
 
 class FeedRepositoriesSectionViewModel {

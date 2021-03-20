@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dartmazing/Components/FeedNewsCell/feed_news_cell.dart';
 import 'package:dartmazing/Components/FeedNewsSection/feed_news_section_view_model.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:flutter/material.dart';
 
 class FeedNewsSection extends StatelessWidget {

@@ -1,20 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dartmazing/Components/FeedRepositoriesGroup/feed_repositories_group.dart';
 import 'package:dartmazing/Components/FeedRepositoriesSection/feed_repositories_section_view_model.dart';
+import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Models/repository.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_type.dart';
 import 'package:dartmazing/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class FeedRepositoriesSection extends StatelessWidget {
 
   final FeedRepositoriesSectionViewModel viewModel;
-  final String title;
   final Function(RepositoriesType) seeMoreTap;
   final Function(Repository) repositoryTap;
   final padding = EdgeInsets.only(left: 16.0, right: 12.0);
 
-  FeedRepositoriesSection({Key key, this.viewModel, this.title, this.seeMoreTap, this.repositoryTap}) : super(key: key);
+  FeedRepositoriesSection({Key key, this.viewModel, this.seeMoreTap, this.repositoryTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class FeedRepositoriesSection extends StatelessWidget {
 
   Widget _title(BuildContext context) {
     return Text(
-      this.title,
+      getFilterTitle(viewModel.type),
       style: TextStyle(
         color: Theme.of(context).textTheme.headline6.color,
         fontSize: 24,

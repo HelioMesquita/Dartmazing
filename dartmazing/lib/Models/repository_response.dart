@@ -1,4 +1,4 @@
-import 'package:dartmazing/Scenes/Feed/Models/repository_owner_response.dart';
+import 'package:dartmazing/Models/repository_owner_response.dart';
 
 class RepositoryResponse {
   String name;
