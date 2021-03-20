@@ -17,7 +17,7 @@ class DetailViewModel {
     this.name = repository.name;
     this.author = repository.author;
     this.imageURL = repository.imageURL;
-    this.description = repository.description;
+    this.description = repository.description ?? "";
     this.stars = "- ${repository.stars.kiloFormat} ${S.current.stars}";
     this.issues = "- ${repository.issues.kiloFormat} ${S.current.issues}";
     this.forks = "- ${repository.forks.kiloFormat} ${S.current.forks}";
