@@ -29,13 +29,13 @@ A Flutter application with layout based on App Store that can check the most sta
 
 ### Prerequisites
 
-* [Flutter](https://developer.apple.com/xcode/) 11.3
+<!-- * [Flutter](https://developer.apple.com/xcode/) 11.3
 * [Cocoapods](https://cocoapods.org) 1.8.4
-* [Bundler](https://bundler.io) 2.0.2 - Only for execute Fastlane
+* [Bundler](https://bundler.io) 2.0.2 - Only for execute Fastlane -->
 
 ### Getting Started
 
-First of all download and install Xcode and Cocoapods, then clone the repository
+<!-- First of all download and install Xcode and Cocoapods, then clone the repository
 
 ```
 https://github.com/HelioMesquita/Swiftmazing.git
@@ -47,7 +47,7 @@ Go to cloned directory and execute
 pod install
 ```
 
-Open the directory project and double tap on Swiftmazing.xcworkspace
+Open the directory project and double tap on Swiftmazing.xcworkspace -->
 
 ## Running the tests
 
