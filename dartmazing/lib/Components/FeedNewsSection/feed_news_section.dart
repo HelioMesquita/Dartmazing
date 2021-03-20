@@ -15,7 +15,7 @@ class FeedNewsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
       options: CarouselOptions(
-        height: 360,
+        height: 355,
         viewportFraction: 0.92,
         enableInfiniteScroll: false,
       ),

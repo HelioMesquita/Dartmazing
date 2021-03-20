@@ -43,7 +43,7 @@ class FeedPage extends StatelessWidget {
                   letterSpacing: -1
                 ),
               ),
-            )
+            ),
           ];
         },
         body: body(),
@@ -58,26 +58,45 @@ class FeedPage extends StatelessWidget {
   }
 
   Widget _list(Loaded state, BuildContext context) {
+    return CustomScrollView(
+      physics: BouncingScrollPhysics(),
+      slivers: [
+        CupertinoSliverRefreshControl(
+          onRefresh: () {
+            print("Refresh was triggered");
+            return Future<void>.delayed(const Duration(seconds: 1));
+          },
+        ),
+        sliverList(state, context)
+      ]
+    );
+  }
+
+  Widget sliverList(Loaded state, BuildContext context) {
     final cubit = BlocProvider.of<FeedCubit>(context);
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          FeedNewsSection(section: state.viewModel.newsSection, 
-          seeMoreTap: (type) => cubit.seeMore(type)),
-          FeedRepositoriesSection(
-            viewModel: state.viewModel.starsSection,
-            title: S.of(context).topRepos,
-            seeMoreTap: (type) => cubit.seeMore(type),
-            repositoryTap: (repository) => _presentDetail(repository, context)
-          ),
-          FeedRepositoriesSection(
-            viewModel: state.viewModel.updatedSection, 
-            title: S.of(context).lastUpdated, 
-            seeMoreTap: (type) => cubit.seeMore(type),
-            repositoryTap: (repository) => _presentDetail(repository, context)
-          )
-        ]
+    final items = [
+      FeedNewsSection(
+        section: state.viewModel.newsSection, 
+        seeMoreTap: (type) => cubit.seeMore(type)
       ),
+      FeedRepositoriesSection(
+        viewModel: state.viewModel.starsSection,
+        title: S.of(context).topRepos,
+        seeMoreTap: (type) => cubit.seeMore(type),
+        repositoryTap: (repository) => _presentDetail(repository, context)
+      ),
+      FeedRepositoriesSection(
+        viewModel: state.viewModel.updatedSection, 
+        title: S.of(context).lastUpdated, 
+        seeMoreTap: (type) => cubit.seeMore(type),
+        repositoryTap: (repository) => _presentDetail(repository, context)
+      )
+    ];
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => items[index],
+        childCount: items.length,
+      )
     );
   }
 
