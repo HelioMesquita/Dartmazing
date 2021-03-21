@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:dartmazing/Models/repository.dart';
 import 'package:dartmazing/Scenes/Feed/Interactor/feed_interactor.dart';
-import 'package:dartmazing/Scenes/Feed/Models/repositories_view_model.dart';
+import 'package:dartmazing/Scenes/Feed/Models/feed_repositories_view_model.dart';
 import 'package:dartmazing/Scenes/RepositoriesList/Models/repositories_list_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +14,7 @@ part 'feed_state.dart';
 class FeedCubit extends Cubit<FeedState> {
 
   final FeedInteractorAbstract interactor;
-  RepositoriesViewModel viewModel;
+  FeedRepositoriesViewModel viewModel;
 
   FeedCubit({@required this.interactor}) : super(Loading()) {
     getRepositories();
@@ -28,13 +28,21 @@ class FeedCubit extends Cubit<FeedState> {
     return completer.future;
   }
 
-  _handleSuccess(RepositoriesViewModel viewModel) {
+  _handleSuccess(FeedRepositoriesViewModel viewModel) {
     this.viewModel = viewModel;
     emit(Loaded(viewModel: viewModel));
   }
 
   _handleError(Object object) {
 
+  }
+
+  seeMore(RepositoriesType type) {
+    if (type == RepositoriesType.stars) {
+      _seeMoreStarsRepositories(type);
+    } else {
+      _seeMoreUpdatedRepositories(type);
+    }
   }
 
   _seeMoreStarsRepositories(RepositoriesType type) {
@@ -45,14 +53,6 @@ class FeedCubit extends Cubit<FeedState> {
   _seeMoreUpdatedRepositories(RepositoriesType type) {
     emit(PresentRepositoriesList(repositories: viewModel.updatedRepositories, type: type));
     emit(Loaded(viewModel: viewModel));
-  }
-
-  seeMore(RepositoriesType type) {
-    if (type == RepositoriesType.stars) {
-      _seeMoreStarsRepositories(type);
-    } else {
-      _seeMoreUpdatedRepositories(type);
-    }
   }
 
 }

@@ -10,7 +10,7 @@ abstract class FeedState extends Equatable {
 class Loading extends FeedState {}
 
 class Loaded extends FeedState {
-  final RepositoriesViewModel viewModel;
+  final FeedRepositoriesViewModel viewModel;
 
   Loaded({this.viewModel});
 
