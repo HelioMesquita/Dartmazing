@@ -5,6 +5,7 @@ import 'package:dartmazing/Extensions/int_kilo_format.dart';
 
 class RepositoriesListCell extends StatelessWidget {
 
+  final double imageHeight = 90;
   final borderRadius = BorderRadius.circular(14);
   final Repository repository;
   final Function(Repository) repositoryTap;
@@ -14,18 +15,22 @@ class RepositoriesListCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Column(
+      child: Table(
+        defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
-          Row(
+          TableRow(
             children: [
               _image(context),
               SizedBox(width: 12),
               _headerText(context)
             ]
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 100),
-            child: Divider(color: Theme.of(context).shadowColor, thickness: 0.5),
+          TableRow(
+            children: [
+              SizedBox(),
+              SizedBox(),
+              Divider(color: Theme.of(context).shadowColor, thickness: 0.5),
+            ]
           ),
         ],
       ),
@@ -48,37 +53,42 @@ class RepositoriesListCell extends StatelessWidget {
         child: Image.network(
           repository.imageURL,
           width: 90,
-          height: 90,
+          height: imageHeight,
         )
       ),
     );
   }
 
   Widget _headerText(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          repository.name,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.headline6.color,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: -0.3
+    return Container(
+      height: imageHeight,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            repository.name,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.headline6.color,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.3
+            ),
           ),
-        ),
-        Text(
-          repository.description ?? "",
-          maxLines: 1,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.subtitle2.color,
-            fontSize: 16,
-            letterSpacing: -0.3
+          Text(
+            repository.description ?? "",
+            maxLines: 2,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.subtitle2.color,
+              fontSize: 12,
+              letterSpacing: -0.3
+            ),
           ),
-        ),
-        SizedBox(height: 25),
-        _starsRow(context)
-      ]
+          Flexible(
+            child: Container()
+          ),
+          _starsRow(context)
+        ]
+      ),
     );
   }
 

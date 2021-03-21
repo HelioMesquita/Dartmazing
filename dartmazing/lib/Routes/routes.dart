@@ -49,7 +49,8 @@ class RouterManager {
       final args = ModalRoute.of(context).settings.arguments as RepositoriesListDTO;
       return BlocProvider<RepositoriesListCubit>(
         create: (context) => RepositoriesListCubit(
-          transferObject: args
+          transferObject: args,
+          interactor: FeedInteractor(worker: Worker())
         ),
         child: RepositoriesListPage(),
         );
