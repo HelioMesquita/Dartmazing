@@ -17,16 +17,16 @@ class RepositoriesListCubit extends Cubit<RepositoriesListState> {
   RepositoriesListCubit({this.transferObject, this.interactor}) : super(Loaded(transferObject.repositories, transferObject.type));
 
   getRepositories(int currentIndex) async {
-    final totalRepositories = transferObject.repositories.length;
-    if (currentIndex == totalRepositories - _nextPageThreshold) {
-      interactor.getRepositories(transferObject.type, _page).then(_handleSuccess).catchError(_handleError);
-    }
+    // final totalRepositories = transferObject.repositories.length;
+    // if (currentIndex == totalRepositories - _nextPageThreshold) {
+    //   _page += 1;
+    //   interactor.getRepositories(transferObject.type, _page).then(_handleSuccess).catchError(_handleError);
+    // }
   }
 
   _handleSuccess(RepositoriesListViewModel viewModel) {
     transferObject.repositories.addAll(viewModel.responseRepositories);
     emit(Loaded(transferObject.repositories, transferObject.type));
-    _page += 1;
   }
 
   _handleError(Object object) {

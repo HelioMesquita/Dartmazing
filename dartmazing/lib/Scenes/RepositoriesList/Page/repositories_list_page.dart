@@ -23,6 +23,7 @@ class RepositoriesListPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: state.repositories.length,
               itemBuilder: (context, index) {
+                BlocProvider.of<RepositoriesListCubit>(context).getRepositories(index);
                 return RepositoriesListCell(repository: state.repositories[index], repositoryTap: (repository) {
                   _presentDetail(repository, context);
                 });
