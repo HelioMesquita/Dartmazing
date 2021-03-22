@@ -5,7 +5,7 @@ import 'package:dartmazing/Extensions/int_kilo_format.dart';
 
 class RepositoriesListCell extends StatelessWidget {
 
-  final double imageHeight = 90;
+  final double imageSize = 90;
   final borderRadius = BorderRadius.circular(14);
   final Repository repository;
   final Function(Repository) repositoryTap;
@@ -16,12 +16,16 @@ class RepositoriesListCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Table(
-        defaultColumnWidth: IntrinsicColumnWidth(),
+        columnWidths: {
+          0: MaxColumnWidth(const FixedColumnWidth(90.0), FractionColumnWidth(0.2)),
+          1: MaxColumnWidth(const FixedColumnWidth(12.0), FractionColumnWidth(0.1)),
+          2: MaxColumnWidth(const FixedColumnWidth(100.0), FractionColumnWidth(0.7)),
+        },
         children: [
           TableRow(
             children: [
               _image(context),
-              SizedBox(width: 12),
+              SizedBox(),
               _headerText(context)
             ]
           ),
@@ -41,6 +45,8 @@ class RepositoriesListCell extends StatelessWidget {
 
   Widget _image(BuildContext context) {
     return Container(
+      width: imageSize,
+      height: imageSize,
       decoration: BoxDecoration(
         borderRadius: borderRadius,
         border: Border.all(
@@ -52,8 +58,6 @@ class RepositoriesListCell extends StatelessWidget {
         borderRadius: borderRadius,
         child: Image.network(
           repository.imageURL,
-          width: 90,
-          height: imageHeight,
         )
       ),
     );
@@ -61,12 +65,13 @@ class RepositoriesListCell extends StatelessWidget {
 
   Widget _headerText(BuildContext context) {
     return Container(
-      height: imageHeight,
+      height: imageSize,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             repository.name,
+            maxLines: 1,
             style: TextStyle(
               color: Theme.of(context).textTheme.headline6.color,
               fontSize: 16,
@@ -74,17 +79,16 @@ class RepositoriesListCell extends StatelessWidget {
               letterSpacing: -0.3
             ),
           ),
-          Text(
-            repository.description ?? "",
-            maxLines: 2,
-            style: TextStyle(
-              color: Theme.of(context).textTheme.subtitle2.color,
-              fontSize: 12,
-              letterSpacing: -0.3
+          Expanded(
+            child: Text(
+              repository.description ?? "",
+              maxLines: 2,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.subtitle2.color,
+                fontSize: 12,
+                letterSpacing: -0.3
+              ),
             ),
-          ),
-          Flexible(
-            child: Container()
           ),
           _starsRow(context)
         ]
