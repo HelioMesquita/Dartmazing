@@ -13,11 +13,14 @@ public class SwiftDartmazingNetworkPlugin: NSObject, FlutterPlugin {
         case "performNativeRequest":
             let json = call.arguments as? [String: Any] ?? [:]
             if let requestNative = RequestNative(json: json) {
-                Network().fetch(requestNative: requestNative) { (response) in
+                Network().fetch(requestNative: requestNative, onSuccess: { (response) in
                     result(response)
-                }
+                }, onFailure: { (error) in
+                    result(error.flutterError)
+                })
+                
             } else {
-                result(FlutterError(code: "0", message: "wrong request object", details: nil))
+                result(RequestError.unknownError.flutterError)
             }
             
         default:

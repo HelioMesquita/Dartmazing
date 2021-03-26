@@ -26,9 +26,11 @@ class DartmazingNetworkPlugin: FlutterPlugin, MethodCallHandler {
     if (call.method == "performNativeRequest") {
       val json = call.arguments as HashMap<String, Any>
       val requestNative = RequestNative(json)
-      Network().fetch(requestNative) {
+      Network().fetch(requestNative, {
         mainThread.success(it)
-      }
+      }, {
+        mainThread.error(it.statusCode.toString(),it.name,null)
+      })
     } else {
       mainThread.notImplemented()
     }

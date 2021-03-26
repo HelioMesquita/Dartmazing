@@ -1,3 +1,4 @@
+import com.dartmazing.network.dartmazing_network.RequestError
 import com.dartmazing.network.dartmazing_network.RequestNative
 import okhttp3.Call
 import okhttp3.Callback
@@ -9,21 +10,30 @@ class Network {
 
     private val client = OkHttpClient()
 
-    fun fetch(requestNative: RequestNative, onFinished: (HashMap<String, Any>)->Unit) {
+    fun fetch(requestNative: RequestNative,
+              onSuccess: (HashMap<String, Any>) -> Unit,
+              onFailure: (RequestError) -> Unit) {
         client.newCall(requestNative.asRequestBuilder()).enqueue(object : Callback {
+
             override fun onFailure(call: Call, e: IOException) {
-                onFinished.invoke(HashMap<String, Any>())
+                onFailure(RequestError.unknownError)
             }
 
             override fun onResponse(call: Call, response: Response) {
                 response.use {
-                    var responseNative : HashMap<String, Any> = HashMap<String, Any>()
-                    responseNative["statusCode"] = "${response.code}"
-                    if (response.body != null) {
-                        responseNative["response"] = response.body!!.string()
+
+                    val statusCode = response.code
+                    if (statusCode in 200..299) {
+
+                        var responseNative : HashMap<String, Any> = HashMap<String, Any>()
+                        responseNative["statusCode"] = "${response.code}"
+                        responseNative["response"] = response.body!!.string() ?: ""
+                        onSuccess(responseNative)
+
+                    } else {
+                        onFailure(RequestError.from(statusCode))
                     }
 
-                    onFinished(responseNative)
                 }
             }
         })
