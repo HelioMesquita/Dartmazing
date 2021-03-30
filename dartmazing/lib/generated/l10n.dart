@@ -155,10 +155,10 @@ class S {
     );
   }
 
-  /// `An error has occurred`
+  /// `An error has occurred, pull to try again`
   String get anErrorHappened {
     return Intl.message(
-      'An error has occurred',
+      'An error has occurred, pull to try again',
       name: 'anErrorHappened',
       desc: '',
       args: [],

@@ -9,9 +9,13 @@ class DartmazingNetwork {
   static const MethodChannel _channel = const MethodChannel('dartmazing_network');
 
   Future<NativeResponse<T>> execute<T>({RequestAbstract request, T factory(Map<String, dynamic> json)}) async {
-    final Map<dynamic, dynamic> response = await _channel.invokeMethod('performNativeRequest', request.toJson());
-    final nativeResponse = Map<String, dynamic>.from(response);
-    return NativeResponse<T>.fromJson(nativeResponse, factory);
+    try {
+      final response = await _channel.invokeMethod('performNativeRequest', request.toJson());
+      final nativeResponse = Map<String, dynamic>.from(response);
+      return NativeResponse<T>.fromJson(nativeResponse, factory);
+    } on PlatformException catch (e) {
+      return Future.error(e);
+    }
   }
 
 }

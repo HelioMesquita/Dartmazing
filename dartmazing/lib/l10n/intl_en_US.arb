@@ -12,7 +12,7 @@
     "forks": "forks",
     "issues": "issues",
     "tryAgain": "Try again",
-    "anErrorHappened": "An error has occurred",
+    "anErrorHappened": "An error has occurred, pull to try again",
     "seeRepository": "See repository",
     "topRepos": "Most popular",
     "lastUpdated": "Last updates",

@@ -32,6 +32,4 @@ class FeedInteractor extends FeedInteractorAbstract {
     return worker.fetch(request: updatedRequest,  factory: (json) => RepositoriesResponse.fromJson(json));
   }
 
-  
-
 }

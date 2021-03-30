@@ -27,12 +27,11 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String repositoryName;
     String repositoryDescription;
     String repositoryStars;
-    // Platform messages may fail, so we use a try/catch PlatformException.
+
     try {
       final network = DartmazingNetwork();
       final responseNative = await network.execute(request: RepositoriesRequest(),  factory: (json) => Repositories.fromJson(json));
@@ -45,9 +44,6 @@ class _MyAppState extends State<MyApp> {
       repositoryStars = 'Failed to get data.';
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
@@ -64,8 +60,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(32.0),
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -78,4 +73,5 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
 }

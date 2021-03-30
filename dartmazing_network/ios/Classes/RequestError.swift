@@ -23,7 +23,7 @@ enum RequestError: Int, Equatable {
     }
     
     var flutterError: FlutterError {
-        return FlutterError(code: self.rawValue, message: message, details: nil)
+        return FlutterError(code: "\(self.rawValue)", message: message, details: nil)
     }
 
 }

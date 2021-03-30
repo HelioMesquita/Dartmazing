@@ -19,15 +19,15 @@ class FeedPage extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is Loading) return _baseScreen(body: () => _loading(), context: context);
-        if (state is Loaded) return _baseScreen(body: () => _list(state, context), context: context);
-        if (state is Error) {}
+        if (state is Loading) return _baseScreen(context: context, body: () => _loading());
+        if (state is Loaded) return _baseScreen(context: context, body: () => _feed(state, context));
+        if (state is Error) return _baseScreen(context: context, body: () => _error(context));
         return Container();
       }
     );
   }
 
-  Widget _baseScreen({Widget Function() body, BuildContext context}) {
+  Widget _baseScreen({BuildContext context, Widget Function() body}) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: NestedScrollView(
@@ -51,13 +51,7 @@ class FeedPage extends StatelessWidget {
     );
   }
 
-  Widget _loading() {
-    return Center(
-      child: CupertinoActivityIndicator(animating: true)
-    );
-  }
-
-  Widget _list(Loaded state, BuildContext context) {
+  Widget _pullToRefresh(BuildContext context, SliverList body) {
     final cubit = BlocProvider.of<FeedCubit>(context);
     return CustomScrollView(
       physics: BouncingScrollPhysics(),
@@ -65,12 +59,47 @@ class FeedPage extends StatelessWidget {
         CupertinoSliverRefreshControl(
           onRefresh: () => cubit.getRepositories()
         ),
-        _sliverList(state, context)
+        body
       ]
     );
   }
 
-  Widget _sliverList(Loaded state, BuildContext context) {
+  // Loading State
+  Widget _loading() => Center(child: CupertinoActivityIndicator(animating: true));
+
+  // Error State
+  Widget _error(BuildContext context) {
+    return _pullToRefresh(context, _errorSliver(context));
+  }
+  
+  SliverList _errorSliver(BuildContext context) {
+    final items = [
+      Text(
+        S.of(context).anErrorHappened,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          decoration: TextDecoration.underline,
+          color: Theme.of(context).textTheme.button.color,
+          fontSize: 24,
+          letterSpacing: -0.3
+        ),
+        
+      ),
+    ];
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => items[index],
+        childCount: items.length,
+      )
+    );
+  }
+
+  // Loaded State
+  Widget _feed(Loaded state, BuildContext context) {
+    return _pullToRefresh(context, _feedSliverList(state, context));
+  }
+
+  SliverList _feedSliverList(Loaded state, BuildContext context) {
     final cubit = BlocProvider.of<FeedCubit>(context);
     final items = [
       FeedNewsSection(

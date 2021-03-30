@@ -34,7 +34,7 @@ class FeedCubit extends Cubit<FeedState> {
   }
 
   _handleError(Object object) {
-
+    emit(Error());
   }
 
   seeMore(RepositoriesType type) {

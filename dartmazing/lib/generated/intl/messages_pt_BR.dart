@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "anErrorHappened" : MessageLookupByLibrary.simpleMessage("Um erro aconteceu"),
+    "anErrorHappened" : MessageLookupByLibrary.simpleMessage("Um erro aconteceu, puxe para tentar novamente"),
     "aplicationName" : MessageLookupByLibrary.simpleMessage("Dartmazing"),
     "bestRepositories" : MessageLookupByLibrary.simpleMessage("MELHORES REPOSITÓRIOS"),
     "bestTools" : MessageLookupByLibrary.simpleMessage("As melhores ferramentas"),
