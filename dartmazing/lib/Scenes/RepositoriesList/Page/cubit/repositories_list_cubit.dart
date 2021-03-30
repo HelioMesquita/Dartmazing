@@ -11,17 +11,16 @@ part 'repositories_list_state.dart';
 class RepositoriesListCubit extends Cubit<RepositoriesListState> {
   final RepositoriesListDTO transferObject;
   final RepositoriesListInteractorAbstract interactor;
-  int _nextPageThreshold = 2;
+  double _nextPageThreshold = 0.9;
   int _page = 1;
 
   RepositoriesListCubit({this.transferObject, this.interactor}) : super(Loaded(transferObject.repositories, transferObject.type));
 
-  getRepositories(int currentIndex) async {
-    // final totalRepositories = transferObject.repositories.length;
-    // if (currentIndex == totalRepositories - _nextPageThreshold) {
-    //   _page += 1;
-    //   interactor.getRepositories(transferObject.type, _page).then(_handleSuccess).catchError(_handleError);
-    // }
+  getRepositories(double currentPosition, double maxScrollExtent) async {
+    if (currentPosition == maxScrollExtent) {
+      _page += 1;
+      interactor.getRepositories(transferObject.type, _page).then(_handleSuccess).catchError(_handleError);
+    }
   }
 
   _handleSuccess(RepositoriesListViewModel viewModel) {

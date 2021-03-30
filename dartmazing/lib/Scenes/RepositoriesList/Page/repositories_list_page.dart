@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RepositoriesListPage extends StatelessWidget {
-  
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RepositoriesListCubit, RepositoriesListState>(
@@ -23,7 +23,6 @@ class RepositoriesListPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: state.repositories.length,
               itemBuilder: (context, index) {
-                BlocProvider.of<RepositoriesListCubit>(context).getRepositories(index);
                 return RepositoriesListCell(repository: state.repositories[index], repositoryTap: (repository) {
                   _presentDetail(repository, context);
                 });
