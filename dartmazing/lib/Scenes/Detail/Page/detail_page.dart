@@ -16,7 +16,9 @@ class DetailPage extends StatelessWidget {
         final viewModel = state.viewModel;
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          appBar: CupertinoNavigationBar(),
+          appBar: CupertinoNavigationBar(
+            backgroundColor: Theme.of(context).backgroundColor,
+          ),
           body: Padding(
             padding: EdgeInsets.only(top: 10.0, left: 24, right: 24),
             child: Column(

@@ -4,7 +4,8 @@ import 'package:dartmazing/Models/repository.dart';
 class RepositoriesListDTO {
   final List<Repository> repositories;
   final RepositoriesType type;
+  final int totalItems;
 
-  RepositoriesListDTO({this.repositories, this.type});
+  RepositoriesListDTO({this.repositories, this.type, this.totalItems});
 
 }

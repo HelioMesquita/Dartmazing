@@ -23,9 +23,10 @@ class Error extends FeedState {}
 class PresentRepositoriesList extends FeedState {
   final List<Repository> repositories;
   final RepositoriesType type;
+  final int totalItems;
 
-  PresentRepositoriesList({this.repositories, this.type});
+  PresentRepositoriesList({this.repositories, this.type, this.totalItems});
 
-  RepositoriesListDTO get transferObject => RepositoriesListDTO(repositories: repositories, type: type);
+  RepositoriesListDTO get transferObject => RepositoriesListDTO(repositories: repositories, type: type, totalItems: totalItems);
 
 }

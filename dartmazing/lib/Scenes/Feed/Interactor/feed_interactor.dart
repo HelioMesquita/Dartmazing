@@ -16,7 +16,12 @@ class FeedInteractor extends FeedInteractorAbstract {
 
   Future<FeedRepositoriesViewModel> getRepositories() async {
     return Future.wait([_starsRequest(), _updatedRequest()]).then((responses) {
-      return FeedRepositoriesViewModel(stars: responses.first, updated: responses.last);
+      return FeedRepositoriesViewModel(
+        stars: responses.first, 
+        updated: responses.last, 
+        starsTotalItems: responses.first.response.totalCount,
+        updatedTotalItems: responses.last.response.totalCount
+      );
     }).catchError((error) {
       return error;
     });

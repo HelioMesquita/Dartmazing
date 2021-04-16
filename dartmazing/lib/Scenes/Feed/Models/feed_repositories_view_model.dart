@@ -9,8 +9,10 @@ import 'package:flutter/foundation.dart';
 class FeedRepositoriesViewModel {
   final NativeResponse<RepositoriesResponse> stars;
   final NativeResponse<RepositoriesResponse> updated;
+  final int starsTotalItems;
+  final int updatedTotalItems;
 
-  FeedRepositoriesViewModel({@required this.stars,@required this.updated});
+  FeedRepositoriesViewModel({@required this.stars, @required this.updated, @required this.starsTotalItems, @required this.updatedTotalItems});
 
   FeedRepositoriesSectionViewModel get starsSection => _toSection(stars, RepositoriesType.stars);
   FeedRepositoriesSectionViewModel get updatedSection => _toSection(updated, RepositoriesType.updated);

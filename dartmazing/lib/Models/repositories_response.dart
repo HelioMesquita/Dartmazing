@@ -3,10 +3,12 @@ import 'package:dartmazing/Models/repository_response.dart';
 
 class RepositoriesResponse {
   List<RepositoryResponse> items;
+  int totalCount;
 
   RepositoriesResponse({this.items});
 
   RepositoriesResponse.fromJson(Map<String, dynamic> json) {
+    totalCount = json["total_count"];
     if (json['items'] != null) {
       items = new List<RepositoryResponse>();
       json['items'].forEach((v) {

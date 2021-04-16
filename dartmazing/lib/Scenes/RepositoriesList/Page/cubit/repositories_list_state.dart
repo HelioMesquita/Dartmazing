@@ -17,3 +17,9 @@ class Loaded extends RepositoriesListState {
   Loaded(List<Repository> repositories, RepositoriesType type) : super(repositories, type);
 
 }
+
+class Loading extends RepositoriesListState {
+  
+  Loading(List<Repository> repositories, RepositoriesType type) : super(repositories, type);
+
+}
