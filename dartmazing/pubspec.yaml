@@ -30,7 +30,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  module:
+    androidPackage: com.dartmazing
+    iosBundleIdentifier: com.dartmazing
 
 flutter_intl:
   enabled: true
   main_locale: en_US
+
