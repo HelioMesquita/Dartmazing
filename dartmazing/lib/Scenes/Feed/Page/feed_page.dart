@@ -43,6 +43,28 @@ class FeedPage extends StatelessWidget {
                   letterSpacing: -1
                 ),
               ),
+              leading: GestureDetector(
+                child: Text(
+                  "Dismiss Flutter",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.button.color,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: -0.3
+                  ),
+                ),
+                onTap: () => BlocProvider.of<FeedCubit>(context).dismissFlutter()
+              ),
+              trailing: GestureDetector(
+                child: Text(
+                  "Open Native Screen",
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.button.color,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: -0.3
+                    ),
+                  ),
+                onTap: () => BlocProvider.of<FeedCubit>(context).openNativeScreen()
+              ),
             ),
           ];
         },

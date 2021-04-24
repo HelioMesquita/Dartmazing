@@ -8,16 +8,27 @@ import 'package:dartmazing/Scenes/Feed/Models/feed_repositories_view_model.dart'
 import 'package:dartmazing/Scenes/RepositoriesList/Models/repositories_list_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
 part 'feed_state.dart';
 
 class FeedCubit extends Cubit<FeedState> {
 
+  static const MethodChannel _channel = const MethodChannel('channel.swiftmazing');
+  
   final FeedInteractorAbstract interactor;
   FeedRepositoriesViewModel viewModel;
 
   FeedCubit({@required this.interactor}) : super(Loading()) {
     getRepositories();
+  }
+
+  dismissFlutter() {
+    _channel.invokeMethod('dismissFlutter');
+  }
+
+  openNativeScreen() {
+    _channel.invokeMethod('openNativeScreen');
   }
 
   Future<void> getRepositories() async {
