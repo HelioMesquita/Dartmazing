@@ -10,4 +10,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.vendored_frameworks   = 'App.framework'
   s.dependency 'Flutter'
+
+  s.pod_target_xcconfig = { "ENABLE_BITCODE": "NO" }
 end
