@@ -1,15 +1,16 @@
 class RepositoryOwnerResponse {
   String login;
   String avatarUrl;
-  
+
   RepositoryOwnerResponse({
-    this.login,
-    this.avatarUrl,
+    required this.login,
+    required this.avatarUrl,
   });
 
-  RepositoryOwnerResponse.fromJson(Map<String, dynamic> json) {
-    login = json['login'];
-    avatarUrl = json['avatar_url'];
+  factory RepositoryOwnerResponse.fromJson(Map<String, dynamic> json) {
+    return RepositoryOwnerResponse(
+      login: json['login'],
+      avatarUrl: json['avatar_url'],
+    );
   }
-  
 }

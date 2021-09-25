@@ -4,30 +4,33 @@ class RepositoryResponse {
   String name;
   RepositoryOwnerResponse owner;
   String htmlUrl;
-  String description;
+  String? description;
   String updatedAt;
   int stargazersCount;
   int forksCount;
   int openIssuesCount;
 
   RepositoryResponse({
-      this.name,
-      this.owner,
-      this.htmlUrl,
-      this.description,
-      this.stargazersCount,
-      this.forksCount,
-      this.openIssuesCount,
-      });
+    required this.name,
+    required this.owner,
+    required this.htmlUrl,
+    required this.description,
+    required this.stargazersCount,
+    required this.forksCount,
+    required this.openIssuesCount,
+    required this.updatedAt,
+  });
 
-  RepositoryResponse.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    owner = json['owner'] != null ? new RepositoryOwnerResponse.fromJson(json['owner']) : null;
-    htmlUrl = json['html_url'];
-    description = json['description'];
-    updatedAt = json['updated_at'];
-    stargazersCount = json['stargazers_count'];
-    forksCount = json['forks_count'];
-    openIssuesCount = json['open_issues_count'];
-  }  
+  factory RepositoryResponse.fromJson(Map<String, dynamic> json) {
+    return RepositoryResponse(
+      name: json['name'],
+      owner: RepositoryOwnerResponse.fromJson(json['owner']),
+      htmlUrl: json['html_url'],
+      description: json['description'],
+      updatedAt: json['updated_at'],
+      stargazersCount: json['stargazers_count'],
+      forksCount: json['forks_count'],
+      openIssuesCount: json['open_issues_count'],
+    );
+  }
 }

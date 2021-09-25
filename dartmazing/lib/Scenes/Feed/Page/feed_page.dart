@@ -8,26 +8,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FeedPage extends StatelessWidget {  
-  
+class FeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FeedCubit, FeedState>(
-      listener: (context, state) {
-        if (state is PresentRepositoriesList) {
-          Navigator.of(context).pushNamed(Routes.RepositoriesList, arguments: state.transferObject);
-        }
-      },
-      builder: (context, state) {
-        if (state is Loading) return _baseScreen(context: context, body: () => _loading());
-        if (state is Loaded) return _baseScreen(context: context, body: () => _feed(state, context));
-        if (state is Error) return _baseScreen(context: context, body: () => _error(context));
-        return Container();
+    return BlocConsumer<FeedCubit, FeedState>(listener: (context, state) {
+      if (state is PresentRepositoriesList) {
+        Navigator.of(context).pushNamed(Routes.RepositoriesList,
+            arguments: state.transferObject);
       }
-    );
+    }, builder: (context, state) {
+      if (state is Loading)
+        return _baseScreen(context: context, body: () => _loading());
+      if (state is Loaded)
+        return _baseScreen(context: context, body: () => _feed(state, context));
+      if (state is Error)
+        return _baseScreen(context: context, body: () => _error(context));
+      return Container();
+    });
   }
 
-  Widget _baseScreen({BuildContext context, Widget Function() body}) {
+  Widget _baseScreen(
+      {required BuildContext context, required Widget Function() body}) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: NestedScrollView(
@@ -39,9 +40,8 @@ class FeedPage extends StatelessWidget {
               largeTitle: Text(
                 S.of(context).aplicationName,
                 style: TextStyle(
-                  color: Theme.of(context).textTheme.headline6.color,
-                  letterSpacing: -1
-                ),
+                    color: Theme.of(context).textTheme.headline6?.color,
+                    letterSpacing: -1),
               ),
             ),
           ];
@@ -53,45 +53,38 @@ class FeedPage extends StatelessWidget {
 
   Widget _pullToRefresh(BuildContext context, SliverList body) {
     final cubit = BlocProvider.of<FeedCubit>(context);
-    return CustomScrollView(
-      physics: BouncingScrollPhysics(),
-      slivers: [
-        CupertinoSliverRefreshControl(
-          onRefresh: () => cubit.getRepositories()
-        ),
-        body
-      ]
-    );
+    return CustomScrollView(physics: BouncingScrollPhysics(), slivers: [
+      CupertinoSliverRefreshControl(onRefresh: () => cubit.getRepositories()),
+      body
+    ]);
   }
 
   // Loading State
-  Widget _loading() => Center(child: CupertinoActivityIndicator(animating: true));
+  Widget _loading() =>
+      Center(child: CupertinoActivityIndicator(animating: true));
 
   // Error State
   Widget _error(BuildContext context) {
     return _pullToRefresh(context, _errorSliver(context));
   }
-  
+
   SliverList _errorSliver(BuildContext context) {
     final items = [
       Text(
         S.of(context).anErrorHappened,
         textAlign: TextAlign.center,
         style: TextStyle(
-          decoration: TextDecoration.underline,
-          color: Theme.of(context).textTheme.button.color,
-          fontSize: 24,
-          letterSpacing: -0.3
-        ),
-        
+            decoration: TextDecoration.underline,
+            color: Theme.of(context).textTheme.button!.color,
+            fontSize: 24,
+            letterSpacing: -0.3),
       ),
     ];
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => items[index],
-        childCount: items.length,
-      )
-    );
+        delegate: SliverChildBuilderDelegate(
+      (context, index) => items[index],
+      childCount: items.length,
+    ));
   }
 
   // Loaded State
@@ -103,31 +96,25 @@ class FeedPage extends StatelessWidget {
     final cubit = BlocProvider.of<FeedCubit>(context);
     final items = [
       FeedNewsSection(
-        section: state.viewModel.newsSection, 
-        seeMoreTap: (type) => cubit.seeMore(type)
-      ),
+          section: state.viewModel.newsSection,
+          seeMoreTap: (type) => cubit.seeMore(type)),
       FeedRepositoriesSection(
-        viewModel: state.viewModel.starsSection,
-        seeMoreTap: (type) => cubit.seeMore(type),
-        repositoryTap: (repository) => _presentDetail(repository, context)
-      ),
+          viewModel: state.viewModel.starsSection,
+          seeMoreTap: (type) => cubit.seeMore(type),
+          repositoryTap: (repository) => _presentDetail(repository, context)),
       FeedRepositoriesSection(
-        viewModel: state.viewModel.updatedSection, 
-        seeMoreTap: (type) => cubit.seeMore(type),
-        repositoryTap: (repository) => _presentDetail(repository, context)
-      )
+          viewModel: state.viewModel.updatedSection,
+          seeMoreTap: (type) => cubit.seeMore(type),
+          repositoryTap: (repository) => _presentDetail(repository, context))
     ];
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => items[index],
-        childCount: items.length,
-      )
-    );
+        delegate: SliverChildBuilderDelegate(
+      (context, index) => items[index],
+      childCount: items.length,
+    ));
   }
 
   _presentDetail(Repository repository, BuildContext context) {
     Navigator.of(context).pushNamed(Routes.Detail, arguments: repository);
   }
-
 }
-

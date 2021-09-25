@@ -1,4 +1,4 @@
-package com.dartmazing.dartmazing
+package com.dartmazing
 
 import io.flutter.embedding.android.FlutterActivity
 

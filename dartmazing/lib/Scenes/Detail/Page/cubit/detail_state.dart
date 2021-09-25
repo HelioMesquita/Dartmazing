@@ -10,5 +10,6 @@ abstract class DetailState extends Equatable {
 }
 
 class DetailInitial extends DetailState {
-  DetailInitial(Repository repository) : super(DetailViewModel(repository));
+  DetailInitial(Repository repository)
+      : super(DetailViewModel.fromRepository(repository));
 }

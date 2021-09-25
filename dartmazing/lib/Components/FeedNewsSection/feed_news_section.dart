@@ -5,11 +5,11 @@ import 'package:dartmazing/Models/repositories_type.dart';
 import 'package:flutter/material.dart';
 
 class FeedNewsSection extends StatelessWidget {
-
   final FeedNewsSectionViewModel section;
   final Function(RepositoriesType) seeMoreTap;
 
-  FeedNewsSection({Key key, this.section, this.seeMoreTap}) : super(key: key);
+  FeedNewsSection({Key? key, required this.section, required this.seeMoreTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +20,13 @@ class FeedNewsSection extends StatelessWidget {
         enableInfiniteScroll: false,
       ),
       itemCount: section.toList.length,
-      itemBuilder: (context,index,_) {
+      itemBuilder: (context, index, _) {
         return GestureDetector(
-          child: Container(
-            margin: EdgeInsets.only(right: 12),
-            child: FeedNewsCell(viewModel: section.toList[index])
-          ),
-          onTap: () => seeMoreTap(section.toList[index].type)
-        );
+            child: Container(
+                margin: EdgeInsets.only(right: 12),
+                child: FeedNewsCell(viewModel: section.toList[index])),
+            onTap: () => seeMoreTap(section.toList[index].type));
       },
     );
   }
-
 }

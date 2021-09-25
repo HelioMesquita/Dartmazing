@@ -1,13 +1,21 @@
 class Repository {
-  final String name;
-  final String author;
-  final String imageURL;
-  final String description;
-  final int stars;
-  final int issues;
-  final int forks;
-  final String lastUpdate;
+  String name;
+  String author;
+  String imageURL;
+  String? description;
+  int stars;
+  int issues;
+  int forks;
+  String lastUpdate;
 
-  Repository({this.name, this.author, this.stars, this.imageURL, this.description, this.issues, this.forks, this.lastUpdate,});
-
+  Repository({
+    required this.name,
+    required this.author,
+    required this.stars,
+    required this.imageURL,
+    required this.description,
+    required this.issues,
+    required this.forks,
+    required this.lastUpdate,
+  });
 }

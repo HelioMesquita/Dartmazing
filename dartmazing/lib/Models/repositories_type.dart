@@ -1,8 +1,6 @@
 import 'package:dartmazing/generated/l10n.dart';
 
-enum RepositoriesType {
-  stars, updated, none
-}
+enum RepositoriesType { stars, updated, none }
 
 String getFilter(RepositoriesType type) {
   switch (type) {
@@ -13,7 +11,6 @@ String getFilter(RepositoriesType type) {
     case RepositoriesType.none:
       return "";
   }
-  return "";
 }
 
 String getFilterTitle(RepositoriesType type) {
@@ -25,5 +22,4 @@ String getFilterTitle(RepositoriesType type) {
     case RepositoriesType.none:
       return "";
   }
-  return "";
 }

@@ -12,7 +12,7 @@ class Loading extends FeedState {}
 class Loaded extends FeedState {
   final FeedRepositoriesViewModel viewModel;
 
-  Loaded({this.viewModel});
+  Loaded({required this.viewModel});
 
   @override
   List<Object> get props => [viewModel];
@@ -25,8 +25,12 @@ class PresentRepositoriesList extends FeedState {
   final RepositoriesType type;
   final int totalItems;
 
-  PresentRepositoriesList({this.repositories, this.type, this.totalItems});
+  PresentRepositoriesList({
+    required this.repositories,
+    required this.type,
+    required this.totalItems,
+  });
 
-  RepositoriesListDTO get transferObject => RepositoriesListDTO(repositories: repositories, type: type, totalItems: totalItems);
-
+  RepositoriesListDTO get transferObject => RepositoriesListDTO(
+      repositories: repositories, type: type, totalItems: totalItems);
 }

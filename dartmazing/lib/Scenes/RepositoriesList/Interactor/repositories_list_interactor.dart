@@ -5,17 +5,21 @@ import 'package:dartmazing/Network/worker.dart';
 import 'package:dartmazing/Scenes/RepositoriesList/Models/repositories_list_view_model.dart';
 
 abstract class RepositoriesListInteractorAbstract {
-  Future<RepositoriesListViewModel> getRepositories(RepositoriesType type, int page);
+  Future<RepositoriesListViewModel> getRepositories(
+      RepositoriesType type, int page);
 }
 
 class RepositoriesListInteractor extends RepositoriesListInteractorAbstract {
-  final WorkerAbstract worker;
+  WorkerAbstract worker;
 
-  RepositoriesListInteractor({this.worker});
+  RepositoriesListInteractor({required this.worker});
 
-  Future<RepositoriesListViewModel> getRepositories(RepositoriesType type, int page) async {
+  Future<RepositoriesListViewModel> getRepositories(
+      RepositoriesType type, int page) async {
     final starsRequest = RepositoriesRequest(type, page);
-    final request = worker.fetch(request: starsRequest,  factory: (json) => RepositoriesResponse.fromJson(json));
+    final request = worker.fetch(
+        request: starsRequest,
+        factory: (json) => RepositoriesResponse.fromJson(json));
 
     return request.then((response) {
       return RepositoriesListViewModel(response: response);
@@ -23,5 +27,4 @@ class RepositoriesListInteractor extends RepositoriesListInteractorAbstract {
       return error;
     });
   }
-
 }

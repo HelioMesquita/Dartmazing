@@ -9,17 +9,23 @@ import 'package:equatable/equatable.dart';
 part 'repositories_list_state.dart';
 
 class RepositoriesListCubit extends Cubit<RepositoriesListState> {
-  final RepositoriesListDTO transferObject;
-  final RepositoriesListInteractorAbstract interactor;
+  RepositoriesListDTO transferObject;
+  RepositoriesListInteractorAbstract interactor;
   int _currentPage = 1;
 
-  RepositoriesListCubit({this.transferObject, this.interactor}) : super(Loaded(transferObject.repositories, transferObject.type));
+  RepositoriesListCubit(
+      {required this.transferObject, required this.interactor})
+      : super(Loaded(transferObject.repositories, transferObject.type));
 
   getRepositories() async {
-    if (!(state is Loading) && state.repositories.length <= transferObject.totalItems) {
+    if (!(state is Loading) &&
+        state.repositories.length <= transferObject.totalItems) {
       final nextPage = _currentPage + 1;
       emit(Loading(state.repositories, state.type));
-      interactor.getRepositories(transferObject.type, nextPage).then(_handleSuccess).catchError(_handleError);
+      interactor
+          .getRepositories(transferObject.type, nextPage)
+          .then(_handleSuccess)
+          .catchError(_handleError);
     }
   }
 
@@ -30,8 +36,5 @@ class RepositoriesListCubit extends Cubit<RepositoriesListState> {
     emit(Loaded(newList, transferObject.type));
   }
 
-  _handleError(Object object) {
-
-  }
-
+  _handleError(Object object) {}
 }

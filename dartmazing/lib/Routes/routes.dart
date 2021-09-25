@@ -19,7 +19,6 @@ class Routes {
 }
 
 class RouterManager {
-
   static Map<String, WidgetBuilder> routes() {
     Map<String, WidgetBuilder> routes = {};
     routes.addAll(_applicationRoutes());
@@ -27,36 +26,29 @@ class RouterManager {
   }
 
   static Map<String, WidgetBuilder> _applicationRoutes() => {
-    Routes.Feed: (context) {
-      return BlocProvider<FeedCubit>(
-        create: (context) => FeedCubit(
-          interactor: FeedInteractor(worker: Worker())
-        ),
-        child: FeedPage(),
-      );
-    },
-
-    Routes.Detail: (context) {
-      final args = ModalRoute.of(context).settings.arguments as Repository;
-      return BlocProvider<DetailCubit>(
-        create: (context) => DetailCubit(
-          repository: args
-        ),
-        child: DetailPage(),
-      );
-    },
-
-    Routes.RepositoriesList: (context) {
-      final args = ModalRoute.of(context).settings.arguments as RepositoriesListDTO;
-      return BlocProvider<RepositoriesListCubit>(
-        create: (context) => RepositoriesListCubit(
-          transferObject: args,
-          interactor: RepositoriesListInteractor(worker: Worker())
-        ),
-        child: RepositoriesListPage(),
-        );
-      },
-
-  };
-
+        Routes.Feed: (context) {
+          return BlocProvider<FeedCubit>(
+            create: (context) =>
+                FeedCubit(interactor: FeedInteractor(worker: Worker())),
+            child: FeedPage(),
+          );
+        },
+        Routes.Detail: (context) {
+          final args = ModalRoute.of(context)?.settings.arguments as Repository;
+          return BlocProvider<DetailCubit>(
+            create: (context) => DetailCubit(repository: args),
+            child: DetailPage(),
+          );
+        },
+        Routes.RepositoriesList: (context) {
+          final args =
+              ModalRoute.of(context)?.settings.arguments as RepositoriesListDTO;
+          return BlocProvider<RepositoriesListCubit>(
+            create: (context) => RepositoriesListCubit(
+                transferObject: args,
+                interactor: RepositoriesListInteractor(worker: Worker())),
+            child: RepositoriesListPage(),
+          );
+        },
+      };
 }

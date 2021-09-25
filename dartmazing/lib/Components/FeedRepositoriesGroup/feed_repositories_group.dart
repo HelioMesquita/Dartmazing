@@ -4,36 +4,42 @@ import 'package:dartmazing/Models/repository.dart';
 import 'package:flutter/material.dart';
 
 class FeedRepositoriesGroup extends StatelessWidget {
-
   final FeedRepositoriesGroupViewModel group;
   final Function(Repository) repositoryTap;
 
-  FeedRepositoriesGroup({Key key, this.group, this.repositoryTap}) : super(key: key);
+  FeedRepositoriesGroup({
+    Key? key,
+    required this.group,
+    required this.repositoryTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FeedRepositoryCell(repository: group.firstCell, repositoryTap: repositoryTap),
-        _cellWithDivider(context, group.secondCell),
-        _cellWithDivider(context, group.thirdCell),
+        _cell(context, group.firstCell, false),
+        _cell(context, group.secondCell, true),
+        _cell(context, group.thirdCell, true),
       ],
     );
   }
 
-  Widget _cellWithDivider(BuildContext context, Repository repository) {
-    return Visibility(
-      visible: repository != null,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 75.0),
-            child: Divider(color: Theme.of(context).shadowColor, thickness: 0.5,),
+  Widget _cell(BuildContext context, Repository? repository, bool hasDivider) {
+    if (repository == null) return Container();
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 75.0),
+          child: Visibility(
+            visible: hasDivider,
+            child: Divider(
+              color: Theme.of(context).shadowColor,
+              thickness: 0.5,
+            ),
           ),
-          FeedRepositoryCell(repository: repository, repositoryTap: repositoryTap)
-        ],
-      ),
+        ),
+        FeedRepositoryCell(repository: repository, repositoryTap: repositoryTap)
+      ],
     );
   }
-
 }

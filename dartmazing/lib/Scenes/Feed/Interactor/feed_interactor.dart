@@ -10,18 +10,17 @@ abstract class FeedInteractorAbstract {
 }
 
 class FeedInteractor extends FeedInteractorAbstract {
-  final WorkerAbstract worker;
+  WorkerAbstract worker;
 
-  FeedInteractor({this.worker});
+  FeedInteractor({required this.worker});
 
   Future<FeedRepositoriesViewModel> getRepositories() async {
     return Future.wait([_starsRequest(), _updatedRequest()]).then((responses) {
       return FeedRepositoriesViewModel(
-        stars: responses.first, 
-        updated: responses.last, 
-        starsTotalItems: responses.first.response.totalCount,
-        updatedTotalItems: responses.last.response.totalCount
-      );
+          stars: responses.first,
+          updated: responses.last,
+          starsTotalItems: responses.first.response.totalCount,
+          updatedTotalItems: responses.last.response.totalCount);
     }).catchError((error) {
       return error;
     });
@@ -29,12 +28,15 @@ class FeedInteractor extends FeedInteractorAbstract {
 
   Future<NativeResponse<RepositoriesResponse>> _starsRequest() async {
     final starsRequest = RepositoriesRequest(RepositoriesType.stars);
-    return worker.fetch(request: starsRequest,  factory: (json) => RepositoriesResponse.fromJson(json));
+    return worker.fetch(
+        request: starsRequest,
+        factory: (json) => RepositoriesResponse.fromJson(json));
   }
 
   Future<NativeResponse<RepositoriesResponse>> _updatedRequest() async {
     final updatedRequest = RepositoriesRequest(RepositoriesType.updated);
-    return worker.fetch(request: updatedRequest,  factory: (json) => RepositoriesResponse.fromJson(json));
+    return worker.fetch(
+        request: updatedRequest,
+        factory: (json) => RepositoriesResponse.fromJson(json));
   }
-
 }

@@ -6,6 +6,6 @@ import 'package:equatable/equatable.dart';
 part 'detail_state.dart';
 
 class DetailCubit extends Cubit<DetailState> {
-
-  DetailCubit({Repository repository}) : super(DetailInitial(repository));
+  DetailCubit({required Repository repository})
+      : super(DetailInitial(repository));
 }

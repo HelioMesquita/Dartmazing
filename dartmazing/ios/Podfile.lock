@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.1)
+  - Alamofire (5.4.3)
   - dartmazing_network (0.0.1):
     - Alamofire (~> 5.4)
     - Flutter
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
-  dartmazing_network: 79acd292dc952578582263be6ce041741c8b9c17
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  dartmazing_network: 5ce0fa31b305ef666538fb0df0f1a2beec041951
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

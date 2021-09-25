@@ -7,22 +7,26 @@ import 'package:dartmazing/Scenes/Feed/Interactor/feed_interactor.dart';
 import 'package:dartmazing/Scenes/Feed/Models/feed_repositories_view_model.dart';
 import 'package:dartmazing/Scenes/RepositoriesList/Models/repositories_list_dto.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
 part 'feed_state.dart';
 
 class FeedCubit extends Cubit<FeedState> {
-
   final FeedInteractorAbstract interactor;
-  FeedRepositoriesViewModel viewModel;
+  late FeedRepositoriesViewModel viewModel;
 
-  FeedCubit({@required this.interactor}) : super(Loading()) {
+  FeedCubit({
+    required this.interactor,
+  }) : super(Loading()) {
     getRepositories();
   }
 
   Future<void> getRepositories() async {
     final completer = Completer();
-    interactor.getRepositories().then(_handleSuccess).catchError(_handleError).whenComplete( () {
+    interactor
+        .getRepositories()
+        .then(_handleSuccess)
+        .catchError(_handleError)
+        .whenComplete(() {
       completer.complete();
     });
     return completer.future;
@@ -46,13 +50,18 @@ class FeedCubit extends Cubit<FeedState> {
   }
 
   _seeMoreStarsRepositories(RepositoriesType type) {
-    emit(PresentRepositoriesList(repositories: viewModel.starsRepositories, type: type, totalItems: viewModel.starsTotalItems));
+    emit(PresentRepositoriesList(
+        repositories: viewModel.starsRepositories,
+        type: type,
+        totalItems: viewModel.starsTotalItems));
     emit(Loaded(viewModel: viewModel));
   }
 
   _seeMoreUpdatedRepositories(RepositoriesType type) {
-    emit(PresentRepositoriesList(repositories: viewModel.updatedRepositories, type: type, totalItems: viewModel.updatedTotalItems));
+    emit(PresentRepositoriesList(
+        repositories: viewModel.updatedRepositories,
+        type: type,
+        totalItems: viewModel.updatedTotalItems));
     emit(Loaded(viewModel: viewModel));
   }
-
 }
