@@ -20,8 +20,8 @@ In additional to understand the advantages and disadvantages of using native res
 
 ### Prerequisites
 
-* [Flutter](https://developer.apple.com/xcode/) 1.22.6
-* [Cocoapods](https://cocoapods.org) 1.10.1
+* [Flutter](https://developer.apple.com/xcode/) 2.2.3
+* [Cocoapods](https://cocoapods.org) 1.10.2
 * [Xcode](https://developer.apple.com/xcode/) 12.2
 
 ### Getting Started
