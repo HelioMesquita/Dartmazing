@@ -1,10 +1,12 @@
 import 'package:dartmazing_network/dartmazing_network.dart';
+import 'package:dartmazing_network/dartmazing_network_web.dart';
 import 'package:dartmazing_network_example/repositories.dart';
 import 'package:dartmazing_network_example/repositories_request.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() {
   runApp(MyApp());
@@ -23,36 +25,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  Future<void> initPlatformState() async {
-    String repositoryName;
-    String repositoryDescription;
-    String repositoryStars;
-
-    try {
-      final network = DartmazingNetwork();
-      final responseNative = await network.execute(
-          request: RepositoriesRequest(),
-          factory: (json) => Repositories.fromJson(json));
-      repositoryName = responseNative.response.items.first.name;
-      repositoryDescription = responseNative.response.items.first.description;
-      repositoryStars =
-          "${responseNative.response.items.first.stargazersCount}";
-    } on PlatformException {
-      repositoryName = 'Failed to get data.';
-      repositoryDescription = 'Failed to get data.';
-      repositoryStars = 'Failed to get data.';
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _repositoryName = repositoryName;
-      _repositoryDescription = repositoryDescription;
-      _repositoryStars = repositoryStars;
-    });
   }
 
   @override
@@ -71,6 +43,43 @@ class _MyAppState extends State<MyApp> {
               Text('Start:: $_repositoryStars\n'),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            String repositoryName;
+            String repositoryDescription;
+            String repositoryStars;
+
+            try {
+              dynamic network;
+              if (kIsWeb) {
+                network = DartmazingNetworkWeb();
+              } else {
+                network = DartmazingNetwork();
+              }
+
+              final responseNative = await network.execute(
+                  request: RepositoriesRequest(),
+                  factory: (json) => Repositories.fromJson(json));
+              repositoryName = responseNative.response.items.first.name;
+              repositoryDescription =
+                  responseNative.response.items.first.description;
+              repositoryStars =
+                  "${responseNative.response.items.first.stargazersCount}";
+            } on PlatformException {
+              repositoryName = 'Failed to get data.';
+              repositoryDescription = 'Failed to get data.';
+              repositoryStars = 'Failed to get data.';
+            }
+
+            if (!mounted) return;
+
+            setState(() {
+              _repositoryName = repositoryName;
+              _repositoryDescription = repositoryDescription;
+              _repositoryStars = repositoryStars;
+            });
+          },
         ),
       ),
     );

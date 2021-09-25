@@ -18,7 +18,6 @@ class Repositories {
 
 class Repository {
   String name;
-  RepositoryOwner? owner;
   String htmlUrl;
   String description;
   String updatedAt;
@@ -28,7 +27,6 @@ class Repository {
 
   Repository(
       {required this.name,
-      required this.owner,
       required this.htmlUrl,
       required this.description,
       required this.stargazersCount,
@@ -39,28 +37,11 @@ class Repository {
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(
         name: json['name'],
-        owner: json['owner'] != null
-            ? new RepositoryOwner.fromJson(json['owner'])
-            : null,
-        htmlUrl: json['html_url'],
-        description: json['description'],
+        htmlUrl: json['html_url'] ?? "",
+        description: json['description'] ?? "",
         updatedAt: json['updated_at'],
         stargazersCount: json['stargazers_count'],
         forksCount: json['forks_count'],
         openIssuesCount: json['open_issues_count']);
-  }
-}
-
-class RepositoryOwner {
-  String login;
-  String avatarUrl;
-
-  RepositoryOwner({
-    required this.login,
-    required this.avatarUrl,
-  });
-
-  factory RepositoryOwner.fromJson(Map<String, dynamic> json) {
-    return RepositoryOwner(avatarUrl: json['avatar_url'], login: json['login']);
   }
 }
