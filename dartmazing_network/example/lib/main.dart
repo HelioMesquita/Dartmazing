@@ -3,7 +3,6 @@ import 'package:dartmazing_network/dartmazing_network_web.dart';
 import 'package:dartmazing_network_example/repositories.dart';
 import 'package:dartmazing_network_example/repositories_request.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;

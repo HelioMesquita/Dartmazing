@@ -1,6 +1,4 @@
-enum HttpVerbs {
-  GET, POST, PUT, PATCH, DELETE
-}
+enum HttpVerbs { GET, POST, PUT, PATCH, DELETE }
 
 String getMethod(HttpVerbs type) {
   switch (type) {
@@ -15,5 +13,4 @@ String getMethod(HttpVerbs type) {
     case HttpVerbs.DELETE:
       return "DELETE";
   }
-  return "";
 }
