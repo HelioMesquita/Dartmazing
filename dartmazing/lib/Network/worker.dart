@@ -1,22 +1,17 @@
-import 'package:dartmazing/Network/base_request.dart';
-import 'package:dartmazing_network/dartmazing_network.dart';
-import 'package:dartmazing_network/native_response.dart';
+library dartmazing;
 
-abstract class WorkerAbstract {
+import 'package:dartmazing_network/native_response.dart';
+import 'base_request.dart';
+
+import 'worker_stub.dart'
+    if (dart.library.io) 'worker_native.dart'
+    if (dart.library.html) 'worker_web.dart';
+
+abstract class Worker {
   Future<NativeResponse<T>> fetch<T>({
     required BaseRequest request,
     required T factory(Map<String, dynamic> json),
   });
-}
 
-class Worker extends WorkerAbstract {
-  final network = DartmazingNetwork();
-
-  Future<NativeResponse<T>> fetch<T>(
-      {required BaseRequest request,
-      required T factory(Map<String, dynamic> json)}) async {
-    final responseNative =
-        await network.execute(request: request, factory: factory);
-    return responseNative;
-  }
+  factory Worker() => getWorker();
 }

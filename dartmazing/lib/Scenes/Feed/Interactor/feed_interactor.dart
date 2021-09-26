@@ -10,7 +10,7 @@ abstract class FeedInteractorAbstract {
 }
 
 class FeedInteractor extends FeedInteractorAbstract {
-  WorkerAbstract worker;
+  Worker worker;
 
   FeedInteractor({required this.worker});
 

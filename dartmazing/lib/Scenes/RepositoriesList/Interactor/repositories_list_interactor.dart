@@ -10,7 +10,7 @@ abstract class RepositoriesListInteractorAbstract {
 }
 
 class RepositoriesListInteractor extends RepositoriesListInteractorAbstract {
-  WorkerAbstract worker;
+  Worker worker;
 
   RepositoriesListInteractor({required this.worker});
 
