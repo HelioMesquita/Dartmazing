@@ -1,5 +1,3 @@
-library dartmazing;
-
 import 'package:dartmazing_network/native_response.dart';
 import 'base_request.dart';
 
