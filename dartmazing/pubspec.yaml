@@ -31,13 +31,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  plugin:
-    platforms:
-      android:
-        package: com.dartmazing_network
-        pluginClass: DartmazingNetworkPlugin
-      ios:
-        pluginClass: DartmazingNetworkPlugin
 
 flutter_intl:
   enabled: true
