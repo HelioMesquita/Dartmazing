@@ -13,7 +13,7 @@ dependencies:
 
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
 
   bloc: ^7.1.0
   flutter_bloc: ^7.3.0
